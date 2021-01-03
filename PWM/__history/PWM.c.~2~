@@ -1,0 +1,26 @@
+
+#include "C:\\librerias\\16F628A.h"
+#use delay(clock = 20000000)
+#fuses HS, NOWDT,PUT,BROWNOUT,NOMCLR,NOLVP,PROTECT,NOCPD
+#use fast_io(A) // estandar de entrada y salidas de los puertos, necesario para que funcione
+#use fast_io(B)
+#zero_ram
+
+int16 data=0;
+void main(){ 
+ 
+set_tris_b(0b00000000);
+setup_timer_2(T2_DIV_BY_16,78,1); //78 por formula desbordamiento timer2
+setup_ccp1(ccp_pwm); // habilita el pwm
+ 
+while(1){    
+   if (data==313){
+   data=0;
+   }
+   data=data+2; 
+   set_pwm1_duty(data);
+   delay_ms(25); 
+
+} 
+   
+}

@@ -1,0 +1,62 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 duty
+006     Timer2
+007     Poscaler
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  main
+000004  @cinit1
+00001E  @cinit2
+
+Project Directory:
+    D:\escuela\tesis\PWM\
+
+Project Files:
+    PWM.c                                                   [03-ene.-21 13:33  CRC=B2E7F759]
+    C:\Program Files (x86)\PICC\devices\18F4520.h           [12-nov.-13 14:35  CRC=30BAB57A]
+
+Source signature=145D624D
+
+Units:
+    PWM (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   PWM.xsym
+    Errors:      PWM.err
+    Ext Symbols: PWM.esym
+    INHX32:      PWM.hex
+    Symbols:     PWM.sym
+    List:        PWM.lst
+    Debug/COFF:  PWM.cof
+    Project:     PWM.ccspjt
+    Call Tree:   PWM.tre
+    Statistics:  PWM.STA

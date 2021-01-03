@@ -1,0 +1,20 @@
+[PROJECT]
+Target=PID.hex
+Processor_Text=PIC18F4520
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=PID.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\
+[PID.c]
+Type=4
+[mru-list]
+1=PID.c
+[Opened Files]
+1=PID.c
+2=..\..\PWM\PWM.c
+3=
+[Units]
+Count=1
+1=PID (main)

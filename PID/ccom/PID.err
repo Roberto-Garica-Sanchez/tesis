@@ -1,0 +1,8 @@
+*** Error 12 "PID.c" Line 22(14,15): Undefined identifier  -- whilt
+*** Error 66 "PID.c" Line 24(27,28): Previous identifier must be a pointer
+*** Error 66 "PID.c" Line 26(29,30): Previous identifier must be a pointer
+*** Error 66 "PID.c" Line 27(31,32): Previous identifier must be a pointer
+*** Error 66 "PID.c" Line 28(31,32): Previous identifier must be a pointer
+*** Error 3 "PID.c" Line 31(26,28): Only integers are supported for this operation
+      6 Errors,  0 Warnings.
+Build Failed.

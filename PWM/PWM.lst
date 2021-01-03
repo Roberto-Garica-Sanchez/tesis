@@ -1,0 +1,165 @@
+CCS PCH C Compiler, Version 5.015, 5967               03-ene.-21 13:33
+
+               Filename:   D:\escuela\tesis\PWM\PWM.lst
+
+               ROM used:   174 bytes (1%)
+                           Largest free fragment is 32594
+               RAM used:   8 (1%) at main() level
+                           8 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0004
+....................  
+.................... #include <18F4520.h> 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10  
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,PUT,BROWNOUT,INTRC_IO   
+.................... #use delay(clock=4000000)   
+....................  
+.................... int16 duty=0; 
+.................... int Timer2,Poscaler; 
+....................  
+.................... void main() {  
+0004:  CLRF   FF8
+0006:  BCF    FD0.7
+0008:  MOVLW  60
+000A:  MOVWF  FD3
+000C:  MOVF   FD3,W
+000E:  CLRF   05
+0010:  CLRF   04
+0012:  MOVF   FC1,W
+0014:  ANDLW  C0
+0016:  IORLW  0F
+0018:  MOVWF  FC1
+001A:  MOVLW  07
+001C:  MOVWF  FB4
+....................    // Generemos una Señal cuadrada de 1 Khz 
+....................    Timer2=249;    //Se carga timer 2 con 249 como lo vimos en la pagina 
+001E:  MOVLW  F9
+0020:  MOVWF  06
+....................    //Preescaler=4;  //Preescaler solo puede tomar valores de: 1 - 4 - 16 
+....................    //Para el preescaler colocamos "t2_div_by_4" 
+....................    Poscaler=1;  //Preescaler solo puede tomar valores de: 1 
+0022:  MOVLW  01
+0024:  MOVWF  07
+....................     
+....................    setup_timer_2(t2_div_by_4,Timer2,Poscaler);   //Configuracion de Timer 2 para establecer frec. PWM a 1kHz 
+0026:  SUBWF  07,W
+0028:  MOVWF  01
+002A:  RLCF   01,W
+002C:  MOVWF  00
+002E:  RLCF   00,F
+0030:  RLCF   00,F
+0032:  MOVLW  F8
+0034:  ANDWF  00,F
+0036:  MOVF   00,W
+0038:  IORLW  05
+003A:  MOVWF  FCA
+003C:  MOVFF  06,FCB
+....................    setup_ccp1(ccp_pwm);                //Configurar modulo CCP1 en modo PWM 
+0040:  BCF    F94.2
+0042:  BCF    F8B.2
+0044:  MOVLW  0C
+0046:  MOVWF  FBD
+0048:  CLRF   FB7
+004A:  CLRF   FB6
+....................    setup_adc_ports(all_analog);        //Configurar ADC 
+004C:  MOVF   FC1,W
+004E:  ANDLW  C0
+0050:  MOVWF  FC1
+....................    setup_adc(adc_clock_internal); 
+0052:  MOVF   FC0,W
+0054:  ANDLW  C0
+0056:  IORLW  07
+0058:  MOVWF  FC0
+005A:  BSF    FC0.7
+005C:  BSF    FC2.0
+....................    while(1) 
+....................    { 
+....................         set_adc_channel(0);    
+005E:  MOVLW  00
+0060:  MOVWF  01
+0062:  MOVF   FC2,W
+0064:  ANDLW  C3
+0066:  IORWF  01,W
+0068:  MOVWF  FC2
+....................         delay_us(100);        
+006A:  MOVLW  20
+006C:  MOVWF  00
+006E:  DECFSZ 00,F
+0070:  BRA    006E
+0072:  BRA    0074
+0074:  NOP   
+....................         duty=read_adc();  
+0076:  BSF    FC2.1
+0078:  BTFSC  FC2.1
+007A:  BRA    0078
+007C:  MOVFF  FC3,04
+0080:  MOVFF  FC4,05
+....................         set_pwm1_duty(duty); 
+0084:  MOVFF  05,02
+0088:  MOVFF  04,01
+008C:  RRCF   02,F
+008E:  RRCF   01,F
+0090:  RRCF   02,F
+0092:  RRCF   01,F
+0094:  RRCF   02,F
+0096:  MOVFF  01,FBE
+009A:  RRCF   02,F
+009C:  RRCF   02,W
+009E:  ANDLW  30
+00A0:  MOVWF  00
+00A2:  MOVF   FBD,W
+00A4:  ANDLW  CF
+00A6:  IORWF  00,W
+00A8:  MOVWF  FBD
+00AA:  BRA    005E
+....................    } 
+.................... } 
+.................... /* 
+00AC:  SLEEP 
+.................... # include <18F4520.h>             //incluimos el codigo del pic 
+.................... #device adc=8                    //Habilitamos el disppositivos a 8bits 
+.................... #fuses hs, wdt, brownout,NOWDT   //incluimos los fusibles necesarios 
+.................... #use delay (clock = 8M)          //usamos reloj de 8Mhz 
+.................... #use standard_io (a,b,c,d)       //usamos la configuracion estandar 
+.................... float  bits_analog;                
+.................... void main (){ 
+....................    setup_adc_ports (AN0);  // habilitamos los puetos analogicos 
+....................    setup_adc(adc_clock_div_16);           // habilitamos los puetos analogicos 
+....................    setup_ccp1(CCP_PWM);                   // habilitamos el puerto ccp1 del pic 
+....................    setup_timer_2(T2_DIV_BY_16, 255,1);    // usamos el timer2  
+....................       while (true){ 
+....................       set_adc_channel(0);     
+....................       delay_ms (2);                    // Selecciono el canal 0 (RA0) 
+....................       bits_analog = read_adc();      
+....................          delay_ms (2); 
+....................          set_pwm1_duty (bits_analog);  // manifestamos los valores de AN0 en cc_pwm) 
+....................          delay_ms (2); 
+....................       } 
+.................... } 
+.................... */ 
+
+Configuration Fuses:
+   Word  1: C800   INTRC_IO FCMEN IESO
+   Word  2: 1E1E   PUT BROWNOUT BORV21 NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

@@ -1,0 +1,112 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     pwm
+005.0   decena_1
+005.1   unidade_1
+005.2   decena_2
+005.3   unidade_2
+006-007 bits
+008-009 bits2
+00A-00B x
+00C-00F vol
+010-013 Frecuencia
+014-017 numero
+018-01B decenas
+01C-01F unidades
+020-021 @ITOF.P1
+020-023 @MULFF.P2
+020-023 @DIVFF.P3
+020     @delay_ms1.P4
+020-023 @ADDFF.P5
+020     main.@SCRATCH1
+021     main.@SCRATCH2
+022-023 @MUL1616.P1
+022-023 @DIV1616.P2
+024-027 @MULFF.P1
+024-025 @MUL1616.P2
+024-027 @ADDFF.P3
+024-025 @DIV1616.P4
+024-027 @DIVFF.P5
+026     @MUL1616.@SCRATCH1
+026     @DIV1616.@SCRATCH1
+028     @DIVFF.@SCRATCH1
+028     @MULFF.@SCRATCH1
+028     @ADDFF.@SCRATCH1
+029     @DIVFF.@SCRATCH2
+029     @MULFF.@SCRATCH2
+029     @ADDFF.@SCRATCH2
+02A     @DIVFF.@SCRATCH3
+02A     @MULFF.@SCRATCH3
+02A     @ADDFF.@SCRATCH3
+02B     @DIVFF.@SCRATCH4
+02B     @ADDFF.@SCRATCH4
+02C     @DIVFF.@SCRATCH5
+02C     @ADDFF.@SCRATCH5
+02D     @DIVFF.@SCRATCH6
+02D     @ADDFF.@SCRATCH6
+02E     @ADDFF.@SCRATCH7
+02F     @ADDFF.@SCRATCH8
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @delay_ms1
+00002E  @MUL1616
+00004C  @DIV1616
+000090  @ITOF
+0000C6  @DIVFF
+000220  @MULFF
+000314  @ADDFF
+00057E  @cinit1
+00057E  main
+000596  @cinit2
+
+Project Directory:
+    D:\escuela\tesis\PID\ccom\
+
+Project Files:
+    PID.c                                                   [28-dic.-20 13:31  CRC=05126FCA]
+    C:\Program Files (x86)\PICC\devices\18f4520.h           [12-nov.-13 14:35  CRC=30BAB57A]
+
+Source signature=6687DABE
+
+Units:
+    PID (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   PID.xsym
+    Errors:      PID.err
+    Ext Symbols: PID.esym
+    INHX32:      PID.hex
+    Symbols:     PID.sym
+    List:        PID.lst
+    Debug/COFF:  PID.cof
+    Project:     PID.ccspjt
+    Call Tree:   PID.tre
+    Statistics:  PID.STA

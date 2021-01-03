@@ -1,0 +1,57 @@
+#include <18f4520.h>
+#device adc=10
+//#device adc=8
+#use delay(clock=4000000)
+#fuses XT, NOWDT
+#USE STANDARD_IO(A)
+#USE STANDARD_IO(B)
+#USE STANDARD_IO(C)
+#USE STANDARD_IO(D)
+#USE STANDARD_IO(E)
+//carga de variable del programa 
+
+int16  bits,bits2,x;     //Variable almacena los bits
+void main (){
+   setup_adc(ADC_CLOCK_INTERNAL);   //Selecciono reloj interno para conversion    
+   setup_adc_ports(AN0_AN1_AN3);    // configura las salidas que seran analogas
+   delay_ms(100);
+   while(1){
+       set_adc_channel(0);          //Selecciono el canal 0 (RA0)
+       bits=read_adc();             //Guarde el dato del LM en tempe
+       //vol=(4.98*bits/1024);        
+       numero=(5*bits*100)/1023;       
+       //tem=(5.0*bits*100.0)/254; 
+       decenas=numero/10;
+       unidades=numero-(decenas*10);
+      set_tris_a(0b01100000);          //Pongo el RA0 RA1 como entrada
+      setup_adc(ADC_CLOCK_INTERNAL);   //Selecciono reloj interno para conversion    
+   //Star_LCD();
+      while(1){
+   
+   
+           //lecturas  de entradas PWM
+               set_adc_channel(5);          //Selecciono el canal 0 (RA1) Voltaje
+               bits=read_adc();             //Guarde el dato del LM en tempe
+               vol=bits/204.8;             //Lectura de voltaje 
+                       //tem=(5.0*bits*100.0)/1024;
+                      
+                       //tem=(5.0*bits*100.0)/254;
+               decena_1=vol/10;
+               unidade_1=vol-(decena_1*10);
+               /*
+               set_adc_channel(6);          //Selecciono el canal 0 (RA1) Frecuencia     
+               bits2=read_adc();             //Guarde el dato del LM en tempe
+               //vol=bits/204.8;             //Lectura de voltaje 
+               Frecuencia=(bits2/1.137777)+100;
+                       //tem=(5.0*bits*100.0)/1024;
+                       //tem=(5.0*bits*100.0)/254;
+               decena_2=Frecuencia/10;
+               unidade_2=Frecuencia-(decena_2*10);
+               //(decena,unidade,GRADOS,Producto_c);  
+               */
+           
+      }  
+   }
+
+
+}

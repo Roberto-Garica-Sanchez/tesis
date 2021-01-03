@@ -1,0 +1,36 @@
+#include <18f4520.h>
+#device adc=10
+//#device adc=8
+#use delay(clock=4000000)
+#fuses XT, NOWDT
+#USE STANDARD_IO(A)
+#USE STANDARD_IO(B)
+#USE STANDARD_IO(C)
+#USE STANDARD_IO(D)
+#USE STANDARD_IO(E)
+float a,b,c;            //variables temporales
+float t=1;              //periodo de muestreo 
+float e;                //error
+float k=0;              //contrador de muestras
+float u[500];            //Salidas
+//#########    ganancias
+float kd;               //Derivativa
+float ki;               //integral
+float kp;               //proporcional
+void main (){
+    k=0; 
+    whilt(true){
+        //muestreo
+            e[k]=(catura las muestra);
+        //calculo
+            a=e[k]  *( kp + (ki*t) )+( kd/t );
+            b=e[k-1]*( (-2*(kd/t) - kp) );
+            c=e[k-2]*( (kd/t) +u[k-1] );
+            u[k]=a+b+c;
+        //incremento en contrador 
+            k++;
+                if(k<=500)break;
+    }
+  
+
+}
