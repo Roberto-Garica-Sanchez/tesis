@@ -1,7 +1,7 @@
-D G "__PCH__" 0 38 ""5.015""
-D G "__DEVICE__" 0 38 "4520"
-D G "__DATE__" 0 38 ""03-ene.-21""
-D G "__TIME__" 0 38 ""17:21:32"" "Standard Header file for the PIC18F4520 device ////////////////"
+D G "__PCH__" 0 71 ""5.015""
+D G "__DEVICE__" 0 71 "4520"
+D G "__DATE__" 0 71 ""04-ene.-21""
+D G "__TIME__" 0 71 ""18:45:05"" "Standard Header file for the PIC18F4520 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 43 "int8" `54 
 f B "set_tris_a" 1 43 "void(int8 value)" `53 
@@ -917,24 +917,41 @@ d G "INT_COMP" 1 834 "0x00A040"
 d G "INT_EEPROM" 1 835 "0x00A010"
 d G "INT_OSCF" 1 836 "0x00A080"
 d G "INT_HLVD" 1 837 "0x00A004"
-C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "a" 0 11 "float" `646 
-V G "b" 0 11 "float" `647 
-V G "c" 0 11 "float" `648  "variables temporales"
-V G "t" 0 12 "float" `649 
-C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "e" 0 13 "float" `650  "error"
-V G "k" 0 14 "float" `651 
-C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "u" 0 15 "float[500]" `652  "Salidas"
-C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "kd" 0 17 "float" `653  "Derivativa"
-V G "ki" 0 18 "float" `654  "integral"
-V G "kp" 0 19 "float" `655  "proporcional"
-F G "main" 0 20 "void()" `656 
-C L "main" 0 3 1 "FUNCTION"
-C L "main" 0 3 1 "FUNCTION"
-C L "main" 0 3 1 "FUNCTION"
+C L "jump_to_irs" 0 8 1 "FUNCTION"
+V G "setpoint" 0 9 "int8" `646 
+V G "posicion_real" 0 10 "int8" `647  "#########     PID"
+V G "duty" 0 12 "int16" `648 
+V G "Timer2" 0 13 "int8" `649 
+V G "Poscaler" 0 13 "int8" `650 
+V G "a" 0 14 "float" `651 
+V G "b" 0 14 "float" `652 
+V G "c" 0 14 "float" `653  "variables temporales"
+V G "t" 0 15 "float" `654 
+C L "jump_to_irs" 0 8 1 "FUNCTION"
+V G "e" 0 16 "float[20]" `655  "error"
+V G "k" 0 17 "float" `656 
+C L "jump_to_irs" 0 8 1 "FUNCTION"
+V G "u" 0 18 "float[20]" `657  "Salidas"
+C L "jump_to_irs" 0 8 1 "FUNCTION"
+V G "kd" 0 20 "float" `658  "Derivativa"
+V G "ki" 0 21 "float" `659  "integral"
+V G "kp" 0 22 "float" `660  "proporcional"
+F G "main" 0 24 "void()" `661  "Generemos una Señal cuadrada de 1 Khz"
+C L "main" 0 8 3 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 2 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 2 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 1 "FUNCTION"
+C L "main" 0 8 2 "FUNCTION"
+V L "i" 0 63 "int8" `680 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

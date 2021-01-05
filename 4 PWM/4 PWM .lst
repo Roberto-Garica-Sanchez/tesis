@@ -1,0 +1,232 @@
+CCS PCH C Compiler, Version 5.015, 5967               05-ene.-21 10:56
+
+               Filename:   D:\escuela\tesis\4 PWM\4 PWM .lst
+
+               ROM used:   284 bytes (1%)
+                           Largest free fragment is 32484
+               RAM used:   7 (0%) at main() level
+                           7 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002A
+....................  
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device ADC = 10 
+.................... #fuses NOMCLR INTRC_IO 
+.................... #use delay(clock = 8000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  06
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    0028
+000E:  MOVLW  02
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  97
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  DECFSZ FEF,F
+0026:  BRA    000E
+0028:  RETURN 0
+.................... #use fast_io(B) 
+.................... #use fast_io(C) 
+.................... #use fast_io(D) 
+....................   
+.................... unsigned int16 i ; 
+.................... void main(){ 
+002A:  CLRF   FF8
+002C:  BCF    FD0.7
+002E:  MOVLW  70
+0030:  MOVWF  FD3
+0032:  MOVF   FD3,W
+0034:  MOVF   FC1,W
+0036:  ANDLW  C0
+0038:  IORLW  0F
+003A:  MOVWF  FC1
+003C:  MOVLW  07
+003E:  MOVWF  FB4
+....................   setup_oscillator(OSC_8MHZ);            // Set internal oscillator to 8MHz 
+0040:  MOVLW  70
+0042:  MOVWF  FD3
+0044:  MOVF   FD3,W
+....................   port_b_pullups(TRUE);                  // Enable PORTB pull-ups 
+0046:  BCF    FF1.7
+....................   output_b(0);                           // PORTB initial state 
+0048:  CLRF   F8A
+....................   set_tris_b(7);                         // Configure RB0, RB1 & RB2 as inputs 
+004A:  MOVLW  07
+004C:  MOVWF  F93
+....................   output_c(0);                           // PORTC initial state 
+004E:  CLRF   F8B
+....................   set_tris_c(0);                         // Configure PORTC pins as outputs 
+0050:  MOVLW  00
+0052:  MOVWF  F94
+....................   output_d(0);                           // PORTD initial state 
+0054:  CLRF   F8C
+....................   set_tris_d(0);                         // Configure PORTD pins as outputs 
+0056:  MOVWF  F95
+....................   setup_adc(ADC_CLOCK_DIV_8);            // Set ADC conversion time to 8Tosc 
+0058:  MOVF   FC0,W
+005A:  ANDLW  C0
+005C:  IORLW  01
+005E:  MOVWF  FC0
+0060:  BSF    FC0.7
+0062:  BSF    FC2.0
+....................   setup_adc_ports(AN0);                  // Configure AN0 as analog input 
+0064:  MOVF   FC1,W
+0066:  ANDLW  C0
+0068:  IORLW  0E
+006A:  MOVWF  FC1
+....................   set_adc_channel(0);                    // Select channel AN0 
+006C:  MOVLW  00
+006E:  MOVWF  01
+0070:  MOVF   FC2,W
+0072:  ANDLW  C3
+0074:  IORWF  01,W
+0076:  MOVWF  FC2
+....................   setup_timer_2(T2_DIV_BY_16, 250, 1);   // Set PWM frequency to 500Hz 
+0078:  MOVLW  00
+007A:  IORLW  06
+007C:  MOVWF  FCA
+007E:  MOVLW  FA
+0080:  MOVWF  FCB
+....................   delay_ms(100);                         // Wait 100ms 
+0082:  MOVLW  64
+0084:  MOVWF  06
+0086:  RCALL  0004
+....................   while(TRUE){ 
+....................     i = read_adc();                      // leee AN0 y lo almacena en i  
+0088:  BSF    FC2.1
+008A:  BTFSC  FC2.1
+008C:  BRA    008A
+008E:  MOVFF  FC3,04
+0092:  MOVFF  FC4,05
+....................     set_pwm1_duty(i);                    // Set pwm1 duty cycle 
+0096:  MOVFF  05,02
+009A:  MOVFF  04,01
+009E:  RRCF   02,F
+00A0:  RRCF   01,F
+00A2:  RRCF   02,F
+00A4:  RRCF   01,F
+00A6:  RRCF   02,F
+00A8:  MOVFF  01,FBE
+00AC:  RRCF   02,F
+00AE:  RRCF   02,W
+00B0:  ANDLW  30
+00B2:  MOVWF  00
+00B4:  MOVF   FBD,W
+00B6:  ANDLW  CF
+00B8:  IORWF  00,W
+00BA:  MOVWF  FBD
+....................     delay_ms(10);                        // Wait 10ms 
+00BC:  MOVLW  0A
+00BE:  MOVWF  06
+00C0:  RCALL  0004
+....................     if(input(PIN_B0) == 0){              // If RB0 button pressed[isquierda]  
+00C2:  BTFSC  F81.0
+00C4:  BRA    00E6
+....................       if(input(PIN_B3) == 0){            // If direction 1 not already selected[led] 
+00C6:  BTFSC  F81.3
+00C8:  BRA    00E6
+....................             output_b(0);                     // Both LEDs OFF 
+00CA:  CLRF   F8A
+....................             setup_ccp1(CCP_OFF);             // CCP1 OFF 
+00CC:  MOVLW  F0
+00CE:  ANDWF  FBD,F
+....................             output_c(0);                     // PORTC pins low 
+00D0:  CLRF   F8B
+....................             output_d(0);                     // PORTD pins low 
+00D2:  CLRF   F8C
+....................             delay_ms(100);                   // Wait 100ms 
+00D4:  MOVLW  64
+00D6:  MOVWF  06
+00D8:  RCALL  0004
+....................             setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE); 
+00DA:  BCF    F8B.2
+00DC:  MOVLW  4C
+00DE:  MOVWF  FBD
+00E0:  CLRF   FB7
+00E2:  CLRF   FB6
+....................                                             // Configure CCP1 as a PWM output forward 
+....................             output_high(PIN_B3);             // RB3 LED ON 
+00E4:  BSF    F8A.3
+....................         } 
+....................     } 
+....................     if(input(PIN_B1) == 0){              // If RB1 button pressed[derecha] 
+00E6:  BTFSC  F81.1
+00E8:  BRA    010A
+....................       if(input(PIN_B4) == 0){            // If direction 2 not already selected[led] 
+00EA:  BTFSC  F81.4
+00EC:  BRA    010A
+....................             output_b(0);                     // Both LEDs OFF 
+00EE:  CLRF   F8A
+....................             setup_ccp1(CCP_OFF);             // CCP1 OFF 
+00F0:  MOVLW  F0
+00F2:  ANDWF  FBD,F
+....................             output_c(0);                     // PORTC pins low 
+00F4:  CLRF   F8B
+....................             output_d(0);                     // PORTD pins low 
+00F6:  CLRF   F8C
+....................             delay_ms(100);                   // Wait 100ms 
+00F8:  MOVLW  64
+00FA:  MOVWF  06
+00FC:  RCALL  0004
+....................             setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE_REV); 
+00FE:  BCF    F8B.2
+0100:  MOVLW  CC
+0102:  MOVWF  FBD
+0104:  CLRF   FB7
+0106:  CLRF   FB6
+....................                                             // Configure CCP1 para multiplexado  
+....................             output_high(PIN_B4);             // RB4 LED ON 
+0108:  BSF    F8A.4
+....................         } 
+....................     } 
+....................     if(input(PIN_B2) == 0){              // If RB2 button pressed[STOP] 
+010A:  BTFSC  F81.2
+010C:  BRA    0118
+....................       setup_ccp1(CCP_OFF);               // CCP1 OFF 
+010E:  MOVLW  F0
+0110:  ANDWF  FBD,F
+....................       output_b(0);                       // Both LEDs OFF 
+0112:  CLRF   F8A
+....................       output_c(0);                       // PORTC pins low 
+0114:  CLRF   F8B
+....................       output_d(0);                       // PORTD pins low 
+0116:  CLRF   F8C
+....................       } 
+0118:  BRA    0088
+....................    } 
+.................... } 
+....................  
+011A:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C83F   PLL12 CPUDIV4 USBDIV INTRC_IO FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
