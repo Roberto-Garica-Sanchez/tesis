@@ -20,10 +20,11 @@ void main() {
    setup_adc(adc_clock_internal);
    while(1)
    {
-        set_adc_channel(0);            //selecciona el puesto en el que se ejecutarn las sigientes instruciones 
-        delay_us(100);       
-        duty=read_adc();               //leer
-        set_pwm1_duty(duty);           //write salida
+      set_adc_channel(0);            //selecciona el puesto en el que se ejecutarn las sigientes instruciones 
+      delay_us(100);       
+      duty=read_adc();               //leer
+      set_pwm1_duty(duty);           //write salida        
+      setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE);
    }
 }
 /*

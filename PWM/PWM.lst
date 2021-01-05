@@ -1,9 +1,9 @@
-CCS PCH C Compiler, Version 5.015, 5967               03-ene.-21 13:33
+CCS PCH C Compiler, Version 5.015, 5967               05-ene.-21 11:54
 
                Filename:   D:\escuela\tesis\PWM\PWM.lst
 
-               ROM used:   174 bytes (1%)
-                           Largest free fragment is 32594
+               ROM used:   192 bytes (1%)
+                           Largest free fragment is 32576
                RAM used:   8 (1%) at main() level
                            8 (1%) worst case
                Stack used: 0 locations
@@ -78,7 +78,7 @@ CCS PCH C Compiler, Version 5.015, 5967               03-ene.-21 13:33
 0046:  MOVWF  FBD
 0048:  CLRF   FB7
 004A:  CLRF   FB6
-....................    setup_adc_ports(all_analog);        //Configurar ADC 
+....................    setup_adc_ports(all_analog);        //Configurar ADC configuracion de los puertos que funcionan en analogico  
 004C:  MOVF   FC1,W
 004E:  ANDLW  C0
 0050:  MOVWF  FC1
@@ -91,27 +91,27 @@ CCS PCH C Compiler, Version 5.015, 5967               03-ene.-21 13:33
 005C:  BSF    FC2.0
 ....................    while(1) 
 ....................    { 
-....................         set_adc_channel(0);    
+....................       set_adc_channel(0);            //selecciona el puesto en el que se ejecutarn las sigientes instruciones  
 005E:  MOVLW  00
 0060:  MOVWF  01
 0062:  MOVF   FC2,W
 0064:  ANDLW  C3
 0066:  IORWF  01,W
 0068:  MOVWF  FC2
-....................         delay_us(100);        
+....................       delay_us(100);        
 006A:  MOVLW  20
 006C:  MOVWF  00
 006E:  DECFSZ 00,F
 0070:  BRA    006E
 0072:  BRA    0074
 0074:  NOP   
-....................         duty=read_adc();  
+....................       duty=read_adc();               //leer 
 0076:  BSF    FC2.1
 0078:  BTFSC  FC2.1
 007A:  BRA    0078
 007C:  MOVFF  FC3,04
 0080:  MOVFF  FC4,05
-....................         set_pwm1_duty(duty); 
+....................       set_pwm1_duty(duty);           //write salida         
 0084:  MOVFF  05,02
 0088:  MOVFF  04,01
 008C:  RRCF   02,F
@@ -128,11 +128,21 @@ CCS PCH C Compiler, Version 5.015, 5967               03-ene.-21 13:33
 00A4:  ANDLW  CF
 00A6:  IORWF  00,W
 00A8:  MOVWF  FBD
-00AA:  BRA    005E
+....................       setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE); 
+00AA:  BCF    F94.2
+00AC:  BCF    F8B.2
+00AE:  BCF    F95.5
+00B0:  BCF    F95.6
+00B2:  BCF    F95.7
+00B4:  MOVLW  4C
+00B6:  MOVWF  FBD
+00B8:  CLRF   FB7
+00BA:  CLRF   FB6
+00BC:  BRA    005E
 ....................    } 
 .................... } 
 .................... /* 
-00AC:  SLEEP 
+00BE:  SLEEP 
 .................... # include <18F4520.h>             //incluimos el codigo del pic 
 .................... #device adc=8                    //Habilitamos el disppositivos a 8bits 
 .................... #fuses hs, wdt, brownout,NOWDT   //incluimos los fusibles necesarios 

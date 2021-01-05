@@ -1,4 +1,5 @@
-
+// Dc motor control with PIC18F4550 CCS C code
+ 
 #include <18F4550.h>
 #device ADC = 10
 #fuses NOMCLR INTRC_IO
@@ -11,12 +12,13 @@ unsigned int16 i ;
 void main(){
   setup_oscillator(OSC_8MHZ);            // Set internal oscillator to 8MHz
   port_b_pullups(TRUE);                  // Enable PORTB pull-ups
-  output_b(0);                           // PORTB initial state
   set_tris_b(7);                         // Configure RB0, RB1 & RB2 as inputs
-  output_c(0);                           // PORTC initial state
   set_tris_c(0);                         // Configure PORTC pins as outputs
-  output_d(0);                           // PORTD initial state
   set_tris_d(0);                         // Configure PORTD pins as outputs
+  output_b(0);                           // PORTB initial state
+  output_c(0);                           // PORTC initial state
+  output_d(0);                           // PORTD initial state
+  
   setup_adc(ADC_CLOCK_DIV_8);            // Set ADC conversion time to 8Tosc
   setup_adc_ports(AN0);                  // Configure AN0 as analog input
   set_adc_channel(0);                    // Select channel AN0
@@ -58,4 +60,3 @@ void main(){
       }
    }
 }
-

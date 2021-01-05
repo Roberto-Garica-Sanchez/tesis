@@ -1,0 +1,193 @@
+CCS PCH C Compiler, Version 5.015, 5967               05-ene.-21 17:04
+
+               Filename:   D:\escuela\tesis\4 PWM\4PWM.lst
+
+               ROM used:   264 bytes (1%)
+                           Largest free fragment is 32504
+               RAM used:   8 (0%) at main() level
+                           9 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... // PIC18F4550 Full-Bridge mode EPWM example CCS C code 
+....................   
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device ADC = 10 
+.................... #fuses NOMCLR INTRC_IO 
+.................... #use delay(clock = 4000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  08
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  01
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  4A
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  BRA    0026
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETURN 0
+....................   
+.................... short mode; 
+.................... unsigned int16 i ; 
+.................... void main(){ 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVLW  60
+0032:  MOVWF  FD3
+0034:  MOVF   FD3,W
+0036:  MOVF   FC1,W
+0038:  ANDLW  C0
+003A:  IORLW  0F
+003C:  MOVWF  FC1
+003E:  MOVLW  07
+0040:  MOVWF  FB4
+....................   setup_oscillator(OSC_8MHZ);            // Set internal oscillator to 8MHz 
+0042:  MOVLW  70
+0044:  MOVWF  FD3
+0046:  MOVF   FD3,W
+....................   setup_adc(ADC_CLOCK_DIV_8);            // Set ADC conversion time to 8Tosc 
+0048:  MOVF   FC0,W
+004A:  ANDLW  C0
+004C:  IORLW  01
+004E:  MOVWF  FC0
+0050:  BSF    FC0.7
+0052:  BSF    FC2.0
+....................   setup_adc_ports(AN0);                  // Configure AN0 as analog input 
+0054:  MOVF   FC1,W
+0056:  ANDLW  C0
+0058:  IORLW  0E
+005A:  MOVWF  FC1
+....................   set_adc_channel(0);                    // Select channel AN0 
+005C:  MOVLW  00
+005E:  MOVWF  01
+0060:  MOVF   FC2,W
+0062:  ANDLW  C3
+0064:  IORWF  01,W
+0066:  MOVWF  FC2
+....................   setup_timer_2(T2_DIV_BY_16, 250, 1);   // Set PWM frequency to 500Hz 
+0068:  MOVLW  00
+006A:  IORLW  06
+006C:  MOVWF  FCA
+006E:  MOVLW  FA
+0070:  MOVWF  FCB
+....................   delay_ms(100);         
+0072:  MOVLW  64
+0074:  MOVWF  08
+0076:  RCALL  0004
+....................   setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE);                  // Wait 100ms 
+0078:  BCF    F94.2
+007A:  BCF    F8B.2
+007C:  BCF    F95.5
+007E:  BCF    F95.6
+0080:  BCF    F95.7
+0082:  MOVLW  4C
+0084:  MOVWF  FBD
+0086:  CLRF   FB7
+0088:  CLRF   FB6
+....................   while(TRUE){ 
+....................     if(input(PIN_B0) == 0){ 
+008A:  BSF    F93.0
+008C:  BTFSC  F81.0
+008E:  BRA    00CA
+....................       mode = ~mode;                      // Toggle mode variable 
+0090:  BTG    04.0
+....................       if(mode == 1){ 
+0092:  BTFSS  04.0
+0094:  BRA    00AA
+....................         setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE); // Forward output mode 
+0096:  BCF    F94.2
+0098:  BCF    F8B.2
+009A:  BCF    F95.5
+009C:  BCF    F95.6
+009E:  BCF    F95.7
+00A0:  MOVLW  4C
+00A2:  MOVWF  FBD
+00A4:  CLRF   FB7
+00A6:  CLRF   FB6
+....................       }else{ 
+00A8:  BRA    00BC
+....................         setup_ccp1(CCP_PWM | CCP_PWM_FULL_BRIDGE_REV); // Reverse output mode 
+00AA:  BCF    F94.2
+00AC:  BCF    F8B.2
+00AE:  BCF    F95.5
+00B0:  BCF    F95.6
+00B2:  BCF    F95.7
+00B4:  MOVLW  CC
+00B6:  MOVWF  FBD
+00B8:  CLRF   FB7
+00BA:  CLRF   FB6
+....................       } 
+....................       delay_ms(500); 
+00BC:  MOVLW  02
+00BE:  MOVWF  07
+00C0:  MOVLW  FA
+00C2:  MOVWF  08
+00C4:  RCALL  0004
+00C6:  DECFSZ 07,F
+00C8:  BRA    00C0
+....................     } 
+....................     i = read_adc();                      // Read from AN0 and store in i 
+00CA:  BSF    FC2.1
+00CC:  BTFSC  FC2.1
+00CE:  BRA    00CC
+00D0:  MOVFF  FC3,05
+00D4:  MOVFF  FC4,06
+....................     set_pwm1_duty(i);                    // Set pwm1 duty cycle to i 
+00D8:  MOVFF  06,02
+00DC:  MOVFF  05,01
+00E0:  RRCF   02,F
+00E2:  RRCF   01,F
+00E4:  RRCF   02,F
+00E6:  RRCF   01,F
+00E8:  RRCF   02,F
+00EA:  MOVFF  01,FBE
+00EE:  RRCF   02,F
+00F0:  RRCF   02,W
+00F2:  ANDLW  30
+00F4:  MOVWF  00
+00F6:  MOVF   FBD,W
+00F8:  ANDLW  CF
+00FA:  IORWF  00,W
+00FC:  MOVWF  FBD
+....................     delay_ms(10);                         // Wait 1ms 
+00FE:  MOVLW  0A
+0100:  MOVWF  08
+0102:  RCALL  0004
+0104:  BRA    008A
+....................    } 
+.................... } 
+0106:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C83F   PLL12 CPUDIV4 USBDIV INTRC_IO FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
