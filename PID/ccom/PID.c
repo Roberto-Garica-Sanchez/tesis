@@ -24,17 +24,17 @@
 int setpoint;
 int posicion_real;
 //#########     PID
-int16 duty=0;
+int duty=0;
 int Timer2,Poscaler;
-float a,b,c;            //variables temporales
-float t=1;              //periodo de muestreo 
-float e[20];           //error
-float k=0;              //contrador de muestras
-float u[20];            //Salidas
+int a,b,c;            //variables temporales
+int t=1;              //periodo de muestreo 
+int e[100];           //error
+int k=0;              //contrador de muestras
+int u[100];            //Salidas
 //#########    ganancias
-float kd;               //Derivativa
-float ki;               //integral
-float kp;               //proporcional
+float kd=1;               //Derivativa
+float ki=0.5;               //integral
+float kp=0.5;               //proporcional
 
 void main() { 
    // Generemos una Señal cuadrada de 1 Khz
@@ -75,10 +75,12 @@ void main() {
         //protecion contra desvordamiento de variables 
         if(k>=20){
             k=0; 
-            for (int i = 0; i <20; i++){
+            for (int i = 0; i <100; i++){
                 e[i]=0;
             }
             
         }
+        
+       
    }
 }

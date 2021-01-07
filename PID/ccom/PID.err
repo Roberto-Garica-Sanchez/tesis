@@ -1,5 +1,5 @@
->>> Warning 203 "PID.c" Line 35(1,1): Condition always TRUE
->>> Warning 202 "PID.c" Line 12(7,11): Variable never used:   duty
-      Memory usage:   ROM=10%      RAM=14% - 15%
+>>> Warning 203 "PID.c" Line 50(1,1): Condition always TRUE
+>>> Warning 202 "PID.c" Line 27(5,9): Variable never used:   duty
+      Memory usage:   ROM=7%      RAM=16% - 17%
       0 Errors,  2 Warnings.
 Build Successful.

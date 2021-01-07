@@ -1,0 +1,80 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     menu_move
+005     pocision_menu
+006     menu_select
+007     menu_back
+008     @delay_ms1.P1
+008     Codigo_numero.numero
+008     Codigo_Letras.letra
+009-00F Codigo_Letras.Codigo
+009-00F Codigo_numero.Codigo
+010-011 write_LCD3.Codigo
+012     write_LCD3.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @delay_ms1
+00002C  Clear_LCD
+00006E  Enciende_LCD
+0000B2  Active_LCD
+0000F6  Star_LCD
+000100  write_LCD3
+0001E2  Codigo_numero
+0002C6  @goto10675
+0002F4  Codigo_Letras
+00056E  @goto10656
+000604  MAIN
+000604  @cinit1
+000618  @cinit2
+
+Project Directory:
+    D:\escuela\tesis\LCD\com\
+
+Project Files:
+    LCD.c                                                   [07-ene.-21 14:21  CRC=ACE1309F]
+    C:\Program Files (x86)\PICC\devices\18f4550.h           [12-nov.-13 14:35  CRC=5337E248]
+
+Source signature=5350F52F
+
+Units:
+    LCD (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   LCD.xsym
+    Errors:      LCD.err
+    Ext Symbols: LCD.esym
+    INHX32:      LCD.hex
+    Symbols:     LCD.sym
+    List:        LCD.lst
+    Debug/COFF:  LCD.cof
+    Project:     LCD.ccspjt
+    Call Tree:   LCD.tre
+    Statistics:  LCD.STA

@@ -1,0 +1,5 @@
+>>> Warning 202 "PWM.c" Line 7(7,11): Variable never used:   duty
+>>> Warning 202 "PWM.c" Line 8(7,11): Variable never used:   temp
+      Memory usage:   ROM=1%      RAM=1% - 1%
+      0 Errors,  2 Warnings.
+Build Successful.

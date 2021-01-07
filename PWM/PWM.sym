@@ -4,16 +4,20 @@
 002     @SCRATCH
 003     @SCRATCH
 004-005 duty
-006     Timer2
-007     Poscaler
+006-007 temp
+008-009 a
+00A-00B b
+00C-00D c
+00E     Timer2
+00F     Poscaler
 F83     PSP_DATA
 FB4.6   C1OUT
 FB4.7   C2OUT
 FBB     CCP_2_LOW
 FBB     CCP_2
 FBC     CCP_2_HIGH
-FBE     CCP_1_LOW
 FBE     CCP_1
+FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
@@ -25,7 +29,7 @@ FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-000004  main
+000004  MAIN
 000004  @cinit1
 00001E  @cinit2
 
@@ -33,16 +37,16 @@ Project Directory:
     D:\escuela\tesis\PWM\
 
 Project Files:
-    PWM.c                                                   [05-ene.-21 11:53  CRC=1194C0D2]
-    C:\Program Files (x86)\PICC\devices\18F4520.h           [12-nov.-13 14:35  CRC=30BAB57A]
+    PWM.c                                                   [07-ene.-21 15:52  CRC=AE450E41]
+    C:\Program Files (x86)\PICC\devices\18F4550.h           [12-nov.-13 14:35  CRC=5337E248]
 
-Source signature=730A2BC6
+Source signature=54B4D2D1
 
 Units:
     PWM (main)
 
 Compiler Settings:
-    Processor:      PIC18F4520
+    Processor:      PIC18F4550
     Pointer Size:   16
     ADC Range:      0-1023
     Opt Level:      9

@@ -1,6 +1,6 @@
 [PROJECT]
 Target=PWM.hex
-Processor_Text=PIC18F4520
+Processor_Text=PIC18F4550
 CCSVersion=5.015
 Compiler=PCH
 [Target Data]

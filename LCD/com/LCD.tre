@@ -1,0 +1,24 @@
+ÀÄLCD
+   ÀÄMAIN  0/128  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄStar_LCD  0/10  Ram=0
+      ³  ÃÄClear_LCD  0/66  Ram=0
+      ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+      ³  ³  ÀÄ@delay_ms1  0/40  Ram=1
+      ³  ÃÄEnciende_LCD  0/68  Ram=0
+      ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+      ³  ³  ÀÄ@delay_ms1  0/40  Ram=1
+      ³  ÀÄActive_LCD  0/68  Ram=0
+      ³     ÃÄ@delay_ms1  0/40  Ram=1
+      ³     ÀÄ@delay_ms1  0/40  Ram=1
+      ÃÄ@delay_ms1  0/40  Ram=1
+      ÃÄClear_LCD  0/66  Ram=0
+      ³  ÀÄ*
+      ÃÄCodigo_numero  0/228  Ram=8
+      ³  ÃÄ@goto10675  0/46  Ram=0
+      ³  ÀÄwrite_LCD3  0/226  Ram=3
+      ÃÄCodigo_Letras  0/634  Ram=8
+      ³  ÃÄ@goto10656  0/150  Ram=0
+      ³  ÀÄwrite_LCD3  0/226  Ram=3
+      ÀÄCodigo_numero  0/228  Ram=8
+         ÀÄ*

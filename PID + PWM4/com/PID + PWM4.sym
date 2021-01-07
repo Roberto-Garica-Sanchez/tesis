@@ -1,0 +1,98 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     menu_move
+005     pocision_menu
+006     menu_select
+007     menu_back
+008-009 setpoint
+00A-00B posicion_real
+00C-00D duty
+00E     Timer2
+00F     Poscaler
+010-011 a
+012-013 b
+014-015 c
+016-017 t
+018-0DF e
+0E0-0E1 k
+0E2-1A9 u
+1AA-1AB kd
+1AC-1AD ki
+1AE-1AF kp
+1B0-1B1 res
+1B2-1B3 conversion
+1B4     MAIN.i
+1B4     Codigo_numero.numero
+1B5     @delay_ms1.P1
+1B5-1BB Codigo_numero.Codigo
+1B5     Codigo_Letras.letra
+1B5     MAIN.@SCRATCH1
+1B6-1BC Codigo_Letras.Codigo
+1B6     MAIN.@SCRATCH2
+1BD-1BE write_LCD3.Codigo
+1BF     write_LCD3.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @delay_ms1
+00002E  Clear_LCD
+000078  Enciende_LCD
+0000C4  Active_LCD
+000110  Star_LCD
+00011A  write_LCD3
+000202  Codigo_Letras
+0004C2  @goto10656
+000558  @cinit1
+000558  MAIN
+000590  @cinit2
+
+Project Directory:
+    D:\escuela\tesis\PID + PWM4\com\
+
+Project Files:
+    PID + PWM4.c                                            [07-ene.-21 15:43  CRC=13540D54]
+    C:\Program Files (x86)\PICC\devices\18F4520.h           [12-nov.-13 14:35  CRC=30BAB57A]
+
+Source signature=74C97848
+
+Units:
+    PID + PWM4 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   PID + PWM4.xsym
+    Errors:      PID + PWM4.err
+    Ext Symbols: PID + PWM4.esym
+    INHX32:      PID + PWM4.hex
+    Symbols:     PID + PWM4.sym
+    List:        PID + PWM4.lst
+    Debug/COFF:  PID + PWM4.cof
+    Project:     PID + PWM4.ccspjt
+    Call Tree:   PID + PWM4.tre
+    Statistics:  PID + PWM4.STA
