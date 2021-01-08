@@ -1,0 +1,241 @@
+CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 22:01
+
+               Filename:   D:\escuela\tesis\PWM 2 hilos\2 PWM.lst
+
+               ROM used:   326 bytes (1%)
+                           Largest free fragment is 32442
+               RAM used:   18 (1%) at main() level
+                           18 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0004
+....................  
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10  
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,PUT,BROWNOUT,INTRC_IO   
+.................... #use delay(clock=4000000)  
+.................... #USE STANDARD_IO(A) 
+.................... #USE STANDARD_IO(B) 
+.................... #USE STANDARD_IO(C) 
+.................... #USE STANDARD_IO(D) 
+.................... #USE STANDARD_IO(E) 
+....................  
+.................... int16 duty=0; 
+.................... int16 temp,a,b,c; 
+.................... int Timer2,Poscaler; 
+.................... int cambio,giro=1; 
+.................... double map(float valor, float entradaMin, float entradaMax, float salidaMin, float salidaMax)     
+.................... {                                 
+....................     return ((((valor-entradaMin)*(salidaMax-salidaMin))/(entradaMax-entradaMin))+salidaMin);  
+.................... }   
+.................... void main() {  
+0004:  CLRF   FF8
+0006:  BCF    FD0.7
+0008:  MOVLW  60
+000A:  MOVWF  FD3
+000C:  MOVF   FD3,W
+000E:  CLRF   05
+0010:  CLRF   04
+0012:  MOVLW  01
+0014:  MOVWF  11
+0016:  MOVF   FC1,W
+0018:  ANDLW  C0
+001A:  IORLW  0F
+001C:  MOVWF  FC1
+001E:  MOVLW  07
+0020:  MOVWF  FB4
+....................    // Generemos una Señal cuadrada de 1 Khz 
+....................    Timer2=249;    //Se carga timer 2 con 249 como lo vimos en la pagina 
+0022:  MOVLW  F9
+0024:  MOVWF  0E
+....................    //Preescaler=4;  //Preescaler solo puede tomar valores de: 1 - 4 - 16 
+....................    //Para el preescaler colocamos "t2_div_by_4" 
+....................    Poscaler=1;  //Preescaler solo puede tomar valores de: 1 
+0026:  MOVLW  01
+0028:  MOVWF  0F
+....................     
+....................    setup_timer_2(t2_div_by_4,Timer2,Poscaler);   //Configuracion de Timer 2 para establecer frec. PWM a 1kHz 
+002A:  SUBWF  0F,W
+002C:  MOVWF  01
+002E:  RLCF   01,W
+0030:  MOVWF  00
+0032:  RLCF   00,F
+0034:  RLCF   00,F
+0036:  MOVLW  F8
+0038:  ANDWF  00,F
+003A:  MOVF   00,W
+003C:  IORLW  05
+003E:  MOVWF  FCA
+0040:  MOVFF  0E,FCB
+....................    setup_ccp1(ccp_pwm);                //Configurar modulo CCP1 en modo PWM 
+0044:  BCF    F94.2
+0046:  BCF    F8B.2
+0048:  MOVLW  0C
+004A:  MOVWF  FBD
+004C:  CLRF   FB7
+004E:  CLRF   FB6
+....................    setup_ccp2(ccp_pwm);                //Configurar modulo CCP1 en modo PWM 
+0050:  BCF    F94.1
+0052:  BCF    F8B.1
+0054:  MOVWF  FBA
+....................    setup_adc_ports(all_analog);        //Configurar ADC configuracion de los puertos que funcionan en analogico  
+0056:  MOVF   FC1,W
+0058:  ANDLW  C0
+005A:  MOVWF  FC1
+....................    setup_adc(adc_clock_internal); 
+005C:  MOVF   FC0,W
+005E:  ANDLW  C0
+0060:  IORLW  07
+0062:  MOVWF  FC0
+0064:  BSF    FC0.7
+0066:  BSF    FC2.0
+....................    while(true){ 
+....................       cambio=INPUT(PIN_C0); 
+0068:  BSF    F94.0
+006A:  CLRF   10
+006C:  BTFSC  F82.0
+006E:  INCF   10,F
+....................       if(cambio==1){ 
+0070:  DECFSZ 10,W
+0072:  BRA    0088
+....................             while (INPUT(PIN_C0)){} 
+0074:  BSF    F94.0
+0076:  BTFSC  F82.0
+0078:  BRA    0074
+....................             if(giro==1){giro=2;}else{giro=1; 
+007A:  DECFSZ 11,W
+007C:  BRA    0084
+007E:  MOVLW  02
+0080:  MOVWF  11
+0082:  BRA    0088
+0084:  MOVLW  01
+0086:  MOVWF  11
+....................          } 
+....................           
+....................       } 
+....................       if(giro==1){   
+0088:  DECFSZ 11,W
+008A:  BRA    00DE
+....................          set_adc_channel(0);        //selecciona el puesto en el que se ejecutarn las sigientes instruciones  
+008C:  MOVLW  00
+008E:  MOVWF  01
+0090:  MOVF   FC2,W
+0092:  ANDLW  C3
+0094:  IORWF  01,W
+0096:  MOVWF  FC2
+....................          delay_us(100);        
+0098:  MOVLW  20
+009A:  MOVWF  00
+009C:  DECFSZ 00,F
+009E:  BRA    009C
+00A0:  BRA    00A2
+00A2:  NOP   
+....................          a=read_adc();               //leer          
+00A4:  BSF    FC2.1
+00A6:  BTFSC  FC2.1
+00A8:  BRA    00A6
+00AA:  MOVFF  FC3,08
+00AE:  MOVFF  FC4,09
+....................          set_pwm1_duty(a);           //write salida de señal PWM  
+00B2:  MOVFF  09,02
+00B6:  MOVFF  08,01
+00BA:  RRCF   02,F
+00BC:  RRCF   01,F
+00BE:  RRCF   02,F
+00C0:  RRCF   01,F
+00C2:  RRCF   02,F
+00C4:  MOVFF  01,FBE
+00C8:  RRCF   02,F
+00CA:  RRCF   02,W
+00CC:  ANDLW  30
+00CE:  MOVWF  00
+00D0:  MOVF   FBD,W
+00D2:  ANDLW  CF
+00D4:  IORWF  00,W
+00D6:  MOVWF  FBD
+....................          output_high(PIN_B1); 
+00D8:  BCF    F93.1
+00DA:  BSF    F8A.1
+....................       }else{output_low(PIN_B1); set_pwm1_duty(0);} 
+00DC:  BRA    00E4
+00DE:  BCF    F93.1
+00E0:  BCF    F8A.1
+00E2:  CLRF   FBE
+....................       if(giro==2){ 
+00E4:  MOVF   11,W
+00E6:  SUBLW  02
+00E8:  BNZ   013C
+....................          set_adc_channel(1);        //selecciona el puesto en el que se ejecutarn las sigientes instruciones  
+00EA:  MOVLW  04
+00EC:  MOVWF  01
+00EE:  MOVF   FC2,W
+00F0:  ANDLW  C3
+00F2:  IORWF  01,W
+00F4:  MOVWF  FC2
+....................          delay_us(100);        
+00F6:  MOVLW  20
+00F8:  MOVWF  00
+00FA:  DECFSZ 00,F
+00FC:  BRA    00FA
+00FE:  BRA    0100
+0100:  NOP   
+....................          a=read_adc();               //leer          
+0102:  BSF    FC2.1
+0104:  BTFSC  FC2.1
+0106:  BRA    0104
+0108:  MOVFF  FC3,08
+010C:  MOVFF  FC4,09
+....................          set_pwm2_duty(a);           //write salida de señal PWM           
+0110:  MOVFF  09,02
+0114:  MOVFF  08,01
+0118:  RRCF   02,F
+011A:  RRCF   01,F
+011C:  RRCF   02,F
+011E:  RRCF   01,F
+0120:  RRCF   02,F
+0122:  MOVFF  01,FBB
+0126:  RRCF   02,F
+0128:  RRCF   02,W
+012A:  ANDLW  30
+012C:  MOVWF  00
+012E:  MOVF   FBA,W
+0130:  ANDLW  CF
+0132:  IORWF  00,W
+0134:  MOVWF  FBA
+....................          output_high(PIN_B2); 
+0136:  BCF    F93.2
+0138:  BSF    F8A.2
+....................       }else{output_low(PIN_B2);set_pwm2_duty(0);} 
+013A:  BRA    0142
+013C:  BCF    F93.2
+013E:  BCF    F8A.2
+0140:  CLRF   FBB
+0142:  BRA    0068
+....................    } 
+.................... } 
+0144:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C83F   PLL12 CPUDIV4 USBDIV INTRC_IO FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
