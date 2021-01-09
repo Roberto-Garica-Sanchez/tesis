@@ -1,0 +1,9 @@
+>>> Warning 202 "PID + PWM2.c" Line 26(7,11): Variable never used:   temp
+>>> Warning 202 "PID + PWM2.c" Line 26(12,13): Variable never used:   a
+>>> Warning 202 "PID + PWM2.c" Line 26(14,15): Variable never used:   b
+>>> Warning 202 "PID + PWM2.c" Line 28(7,11): Variable never used:   duty
+>>> Warning 202 "PID + PWM2.c" Line 31(5,11): Variable never used:   cambio
+>>> Warning 202 "PID + PWM2.c" Line 31(12,16): Variable never used:   giro
+      Memory usage:   ROM=1%      RAM=1% - 1%
+      0 Errors,  6 Warnings.
+Build Successful.

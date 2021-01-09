@@ -1,0 +1,19 @@
+[PROJECT]
+Target=PID + PWM2.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=PID + PWM2.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\
+[PID + PWM2.c]
+Type=4
+[mru-list]
+1=PID + PWM2.c
+[Opened Files]
+1=PID + PWM2.c
+2=
+[Units]
+Count=1
+1=PID + PWM2 (main)

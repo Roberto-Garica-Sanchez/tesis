@@ -1,0 +1,44 @@
+
+ROM used:   372/32768 (1%)
+            372/32768 (1%) including unused fragments
+
+            0.4 Average locations per line
+            10.1 Average locations per statement
+
+RAM used:   22/2048 (1%) at main() level
+            22/2048 (1%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   87    37 100  PID + PWM2.c
+  837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
+----- -----
+  924    37 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    368  49    0   905  5.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              37
+    Comments                194
+    Volume (V)              908
+    Difficulty (D)          5.7
+    Effort to implement (E) 5203
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    96
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   368  32396  
+
+
+
