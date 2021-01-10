@@ -43,6 +43,7 @@ void MAIN(){
       //printf(lcd_putc,"e= %u",bits_SetPoint);
       LCD_GOTOXY(3,2);        //Ubicarse en la columna 3 fila 2
       printf(lcd_putc,"e= %f",Var_SetPoint);
+      
 
    } //Cierra while true
 }

@@ -1,7 +1,8 @@
-D G "__PCH__" 0 224 ""5.015""
-D G "__DEVICE__" 0 224 "4550"
-D G "__DATE__" 0 224 ""07-ene.-21""
-D G "__TIME__" 0 224 ""14:48:00"" "Standard Header file for the PIC18F4550 device ////////////////"
+C L "MAIN" 0 4 2 "FUNCTION"
+D G "__PCH__" 0 232 ""5.015""
+D G "__DEVICE__" 0 232 "4550"
+D G "__DATE__" 0 232 ""09-ene.-21""
+D G "__TIME__" 0 232 ""18:15:32"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
@@ -916,37 +917,42 @@ C L "jump_to_irs" 0 4 1 "FUNCTION"
 V G "menu_move" 0 11 "int8" `646 
 V G "pocision_menu" 0 12 "int8" `647 
 V G "menu_select" 0 13 "int8" `648 
-V G "menu_back" 0 14 "int8" `649  "conexiones de LCD"
-D G "LCD_RS" 0 16 "PIN_C4"
-D G "LCD_RW" 0 17 "PIN_C5"
-D G "LCD_EN" 0 18 "PIN_C6"
-D G "LCD_D0" 0 20 "PIN_D0"
-D G "LCD_D1" 0 21 "PIN_D1"
-D G "LCD_D2" 0 22 "PIN_D2"
-D G "LCD_D3" 0 23 "PIN_D3"
-D G "LCD_D4" 0 24 "PIN_D4"
-D G "LCD_D5" 0 25 "PIN_D5"
-D G "LCD_D6" 0 26 "PIN_D6"
-D G "LCD_D7" 0 27 "PIN_D7"
-F G "Active_LCD" 0 29 "void()" `650 
+V G "menu_back" 0 14 "int8" `649 
+V G "bits_sensor" 0 15 "int16" `650 
+V G "numero" 0 16 "float" `651  "conexiones de LCD"
+D G "LCD_RS" 0 18 "PIN_C4"
+D G "LCD_RW" 0 19 "PIN_C5"
+D G "LCD_EN" 0 20 "PIN_C6"
+D G "LCD_D0" 0 22 "PIN_D0"
+D G "LCD_D1" 0 23 "PIN_D1"
+D G "LCD_D2" 0 24 "PIN_D2"
+D G "LCD_D3" 0 25 "PIN_D3"
+D G "LCD_D4" 0 26 "PIN_D4"
+D G "LCD_D5" 0 27 "PIN_D5"
+D G "LCD_D6" 0 28 "PIN_D6"
+D G "LCD_D7" 0 29 "PIN_D7"
+F G "Active_LCD" 0 31 "void()" `652 
 C L "Active_LCD" 0 4 1 "FUNCTION"
-F G "Enciende_LCD" 0 49 "void()" `651 
+F G "Enciende_LCD" 0 51 "void()" `653 
 C L "Enciende_LCD" 0 4 1 "FUNCTION"
-F G "Clear_LCD" 0 70 "void()" `652 
+F G "Clear_LCD" 0 72 "void()" `654 
 C L "Clear_LCD" 0 4 1 "FUNCTION"
-F G "write_LCD" 0 90 "void()" `653 
+F G "write_LCD" 0 92 "void()" `655 
 C L "write_LCD" 0 4 1 "FUNCTION"
-V L "Codigo" 0 110 "*int8" `655 
-F G "write_LCD3" 0 110 "void(*int8 Codigo)" `654 
+V L "Codigo" 0 112 "*int8" `657 
+F G "write_LCD3" 0 112 "void(*int8 Codigo)" `656 
 C L "write_LCD3" 0 4 2 "FUNCTION"
-F G "Star_LCD" 0 130 "void()" `656 
-V L "letra" 0 135 "int8" `658 
-F G "Codigo_Letras" 0 135 "int8(int8 letra)" `657 
-V L "Codigo" 0 136 "int8[7]" `659 
-V L "numero" 0 178 "int8" `662 
-F G "Codigo_numero" 0 178 "int8(int8 numero)" `661 
-V L "Codigo" 0 179 "int8[7]" `663 
-F G "MAIN" 0 195 "void()" `665 
+F G "Star_LCD" 0 132 "void()" `658 
+V L "letra" 0 137 "int8" `660 
+F G "Codigo_Letras" 0 137 "int8(int8 letra)" `659 
+V L "Codigo" 0 138 "int8[7]" `661 
+V L "numero" 0 180 "int8" `664 
+F G "Codigo_numero" 0 180 "int8(int8 numero)" `663 
+V L "Codigo" 0 181 "int8[7]" `665 
+F G "MAIN" 0 197 "void()" `667 
+C L "MAIN" 0 4 1 "FUNCTION"
+C L "MAIN" 0 4 1 "FUNCTION"
+C L "MAIN" 0 4 1 "FUNCTION"
 C L "MAIN" 0 4 1 "FUNCTION"
 C L "MAIN" 0 4 1 "FUNCTION"
 C L "MAIN" 0 4 1 "FUNCTION"

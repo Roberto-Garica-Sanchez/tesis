@@ -1,4 +1,5 @@
 #include <18f4550.h>
+#device adc=10
 #use delay(clock=4000000)
 #fuses XT, NOWDT
 //#include <math.h>
@@ -12,6 +13,8 @@ int menu_move;
 int pocision_menu=1;
 int menu_select;
 int menu_back;
+int16 bits_sensor;
+float numero;
 //conexiones de LCD
     #define LCD_RS PIN_C4
     #define LCD_RW PIN_C5
@@ -193,16 +196,22 @@ int  Codigo_numero(int numero){
     return  Codigo;
 }
 void main(){   
+   setup_adc(ADC_CLOCK_INTERNAL);   //Selecciono reloj interno para conversion    
+   setup_adc_ports(AN0);
     Star_LCD();
 
     while (1){
-        menu_move=INPUT(PIN_B0); //cambia entre las diferentes obciones del menu 
-        menu_select=INPUT(PIN_B1);   //seleciona actual del menu 
-        menu_back=INPUT(PIN_B2);   //regresar en el menu 
+       set_adc_channel(0);          //Selecciono el canal 0 (RA0)
+       bits_sensor=read_adc();             //Guarde el dato del LM en tempe
+        
+        numero=(5*bits_sensor*100)/1023;      
+        menu_move=INPUT(PIN_B1); //cambia entre las diferentes obciones del menu 
+        menu_select=INPUT(PIN_B2);   //seleciona actual del menu 
+        menu_back=INPUT(PIN_B3);   //regresar en el menu 
         if (menu_move==1)   {
             output_high(PIN_B7);
             pocision_menu++;
-            while (INPUT(PIN_B0)){
+            while (INPUT(PIN_B1)){
             }
             delay_ms(100);
             
@@ -213,9 +222,9 @@ void main(){
         if (menu_select==1) {output_high(PIN_B6);}else{output_low(PIN_B6);}
         if (menu_back==1)   {output_high(PIN_B5);}else{output_low(PIN_B5);}
                 Clear_LCD();
-                Codigo_numero(pocision_menu);
-                Codigo_Letras('/');
-                Codigo_numero(2);
+                Codigo_numero(bits_sensor);
+                //Codigo_Letras('/');
+                //Codigo_numero(2);
    
     }
     

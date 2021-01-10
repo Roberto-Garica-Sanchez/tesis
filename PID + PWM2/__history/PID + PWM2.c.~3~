@@ -31,7 +31,7 @@ unsigned int16 bits_RES=0;
 int16 duty=0;
 int Timer2,Poscaler;
 //VAR motor 
-int cambio,giro=1;//giro 1 si es negativos los valores 
+int cambio,giro=1;
 //#########     PID
 float Var_SetPoint=0;
 float Var_PocitionReal=0;
@@ -95,14 +95,7 @@ void main() {
             Var_res_0=a+b+c;
             
          //conversion para PWM
-         if(Var_res_0<0){//control de giro 
-            Var_res_0=Var_res_0*-1;
-            giro=2;
-         }else{giro=1;}
-         if(Var_res_0>=4.90){//control contra desvordamiento 
-            Var_res_0=4.99;
-         }
-         bits_RES      = (1024*Var_res_0)/5;
+         bits_RES      = (1024.0*Var_res_0)/5.0;
          //incremento en contrador 
             k=k+1;
                    
@@ -113,42 +106,33 @@ void main() {
       printf(lcd_putc," %4Lu",bits_PocitionReal);  
       printf(lcd_putc," %4Lu",bits_difer);  
       */
-      printf(lcd_putc," %4Lu",bits_difer); lcd_putc("b");  
-      printf(lcd_putc," %f",Var_error_0); lcd_putc("V");   
+      printf(lcd_putc," %f",Var_error_0);  
+      printf(lcd_putc," %f",Var_res_0);     
       LCD_GOTOXY(1,2);        
-      printf(lcd_putc," %4Lu",bits_RES);  lcd_putc("b");      
-      printf(lcd_putc," %f",Var_res_0);   lcd_putc("V");   
-      delay_ms(100);
-      LCD_PUTC("\f");   //Borrar el contenido del LCD  
-      
+      printf(lcd_putc," %f",bits_RES);           
+      printf(lcd_putc," %f",Var_res_0);            
       //printf(lcd_putc," %i",k);            
       //printf(lcd_putc," %f",c);            
       // EL SISGUIENTE CODIGO SE ENCARGA DE CONVERTIR el valor de salida del pid en 
       //valores validos para el puente h de dos hilos 
       //el sentido de giro se definira por el signo ->0<+
       
-      
-      if(Var_PocitionReal<Var_SetPoint){//valores positivos 
+      /*
+      if(Var_PocitionReal<Var_SetPoint){     
          c=Var_SetPoint-Var_PocitionReal;
-         set_pwm1_duty(bits_RES);            //write salida de señal PWM 
-         output_high(PIN_B1);                //led indicador de giro 
-      }else{
-         output_low(PIN_B1); 
-         set_pwm1_duty(0);
-         }
-      if(Var_PocitionReal>Var_SetPoint){     //valores negativos 
+         set_pwm1_duty(c);          //write salida de señal PWM 
+         output_high(PIN_B1);       //led indicador de giro 
+      }else{output_low(PIN_B1); set_pwm1_duty(0);}
+      if(Var_PocitionReal>Var_SetPoint){  
          c=Var_PocitionReal-Var_SetPoint;
-         set_pwm2_duty(bits_RES);            //write salida de señal PWM          
-         output_high(PIN_B2);                //led indicador de giro 
-      }else{
-         output_low(PIN_B2);
-         set_pwm2_duty(0);
-      } //si el sentido de giro no corresponde apaga el led y PWM
+         set_pwm2_duty(c);          //write salida de señal PWM          
+         output_high(PIN_B2);       //led indicador de giro 
+      }else{output_low(PIN_B2);set_pwm2_duty(0);} //si el sentido de giro no corresponde apaga el led y PWM
       if(Var_SetPoint==Var_PocitionReal){
          set_pwm2_duty(0);
          set_pwm1_duty(0);
       }
-      
+      */
      
    }
 }

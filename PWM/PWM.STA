@@ -13,10 +13,10 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   48    28 100  PWM.c
+   53    28 100  PWM.c
   837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
 ----- -----
-  885    28 Total
+  890    28 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -26,7 +26,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 Program metrics:
     Functions               2
     Statements              28
-    Comments                167
+    Comments                168
     Volume (V)              707
     Difficulty (D)          6.6
     Effort to implement (E) 4665

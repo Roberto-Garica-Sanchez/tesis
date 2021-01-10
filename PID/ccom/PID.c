@@ -13,28 +13,27 @@
     //control puenta H
         //Grupos de rotacion 
         //A
-            //[P1A][RC2]
-            //[P1D][RD7]
+            //[RC2]
         //B
-            //[P1C][RD6]
-            //[P1B][RD5]
+            //[RD6]
 
 
-//#########     lecturas
-int setpoint;
-int posicion_real;
-//#########     PID
-int duty=0;
 int Timer2,Poscaler;
-int a,b,c;            //variables temporales
-int t=1;              //periodo de muestreo 
-int e[100];           //error
-int k=0;              //contrador de muestras
-int u[100];            //Salidas
+int16 duty=0;
+//#########     lecturas
+int16 setpoint;
+int16 posicion_real;
+//#########     PID
+float a,b,c;            //variables temporales
+float t=1;              //periodo de muestreo 
+float e[100];           //error
+float k=0;              //contrador de muestras
+float u[100];            //Salidas
 //#########    ganancias
 float kd=1;               //Derivativa
 float ki=0.5;               //integral
 float kp=0.5;               //proporcional
+
 
 void main() { 
    // Generemos una Señal cuadrada de 1 Khz

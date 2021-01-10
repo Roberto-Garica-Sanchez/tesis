@@ -3,6 +3,7 @@
 #device ADC=10 
 #fuses XT,NOWDT,NOPROTECT,NOLVP,PUT,BROWNOUT,INTRC_IO  
 #use delay(clock=4000000) 
+   #define lcd_type 1 
 #INCLUDE <LCD.C>
 #USE STANDARD_IO(A)
 #USE STANDARD_IO(B)
@@ -23,30 +24,28 @@
 unsigned int16 bits_SetPoint=0;
 unsigned int16 bits_PocitionReal=0;
 unsigned int16 bits_difer=0;
-unsigned int16 bits_RES=0;
 
+//var PID
+float Var_SetPoint=0;
+float Var_PocitionReal=0;
+float Var_error=0;
 //variable temporales 
 //int16 temp,a,b,c;
 //VAR PWM
 int16 duty=0;
 int Timer2,Poscaler;
 //VAR motor 
-int cambio,giro=1;//giro 1 si es negativos los valores 
+int cambio,giro=1;
 //#########     PID
-float Var_SetPoint=0;
-float Var_PocitionReal=0;
-float Var_error_0=0;
-float Var_error_1=0;
-float Var_error_2=0;
 float a,b,c;            //variables temporales
 float t=1;              //periodo de muestreo 
+float e[100];           //error
 int k=0;              //contrador de muestras
-float Var_res_0;            //Salidas
-float Var_res_1;            //Salidas
+float u[100];            //Salidas
 //#########    ganancias
-float kp=1;               //proporcional
-float kd=0.2;               //Derivativa
-float ki=0.2;               //integral
+float kd=1;               //Derivativa
+float ki=0.5;               //integral
+float kp=0.5;               //proporcional
 
 
 float32 map(float32 valor, float32 entradaMin, float32 entradaMax, float32 salidaMin, float32 salidaMax)    
@@ -79,77 +78,62 @@ void main() {
          Var_SetPoint      = (5.0*bits_SetPoint)/1024.0;
          Var_PocitionReal  = (5.0*bits_PocitionReal)/1024.0;
          bits_difer=bits_PocitionReal-bits_SetPoint;
+         Var_error=Var_PocitionReal-Var_SetPoint;
          //diferencia de voltaje 
          c=Var_PocitionReal-Var_SetPoint;
          //PID Calculos //muestreo
-            Var_error_2=Var_error_1;
-            Var_error_2=Var_error_0;  
-            Var_error_0=Var_PocitionReal-Var_SetPoint;
+            e[k]=Var_error;
             
         //calculo
-            
-            a=Var_error_0  *( kp + (ki*t) )+( kd/t );
-            b=Var_error_1*( (-2*(kd/t) - kp) );
-            c=Var_error_2*( (kd/t) +Var_res_1 );
-            Var_res_1=Var_res_0;
-            Var_res_0=a+b+c;
-            
-         //conversion para PWM
-         if(Var_res_0<0){//control de giro 
-            Var_res_0=Var_res_0*-1;
-            giro=2;
-         }else{giro=1;}
-         if(Var_res_0>=4.90){//control contra desvordamiento 
-            Var_res_0=4.99;
-         }
-         bits_RES      = (1024*Var_res_0)/5;
-         //incremento en contrador 
+            /*
+            a=e[k]  *( kp + (ki*t) )+( kd/t );
+            b=e[k-1]*( (-2*(kd/t) - kp) );
+            c=e[k-2]*( (kd/t) +u[k-1] );
+            u[k]=a+b+c;
+            */
+        //incremento en contrador 
             k=k+1;
                    
       //interface
       LCD_GOTOXY(1,1);       
-      /*
       printf(lcd_putc," %4Lu",bits_SetPoint);  
       printf(lcd_putc," %4Lu",bits_PocitionReal);  
       printf(lcd_putc," %4Lu",bits_difer);  
-      */
-      printf(lcd_putc," %4Lu",bits_difer); lcd_putc("b");  
-      printf(lcd_putc," %f",Var_error_0); lcd_putc("V");   
       LCD_GOTOXY(1,2);        
-      printf(lcd_putc," %4Lu",bits_RES);  lcd_putc("b");      
-      printf(lcd_putc," %f",Var_res_0);   lcd_putc("V");   
-      delay_ms(100);
-      LCD_PUTC("\f");   //Borrar el contenido del LCD  
-      
-      //printf(lcd_putc," %i",k);            
-      //printf(lcd_putc," %f",c);            
+      printf(lcd_putc," %f",Var_SetPoint);         lcd_putc("V");
+      printf(lcd_putc," %f",Var_PocitionReal);     lcd_putc("V");
+      printf(lcd_putc," %f",Var_error);            lcd_putc("V");
+      LCD_GOTOXY(1,3);        
+      printf(lcd_putc," %i",k);            
+      printf(lcd_putc," %f", e[k]);            
       // EL SISGUIENTE CODIGO SE ENCARGA DE CONVERTIR el valor de salida del pid en 
       //valores validos para el puente h de dos hilos 
       //el sentido de giro se definira por el signo ->0<+
       
-      
-      if(Var_PocitionReal<Var_SetPoint){//valores positivos 
+      /*
+      if(Var_PocitionReal<Var_SetPoint){     
          c=Var_SetPoint-Var_PocitionReal;
-         set_pwm1_duty(bits_RES);            //write salida de señal PWM 
-         output_high(PIN_B1);                //led indicador de giro 
-      }else{
-         output_low(PIN_B1); 
-         set_pwm1_duty(0);
-         }
-      if(Var_PocitionReal>Var_SetPoint){     //valores negativos 
+         set_pwm1_duty(c);          //write salida de señal PWM 
+         output_high(PIN_B1);       //led indicador de giro 
+      }else{output_low(PIN_B1); set_pwm1_duty(0);}
+      if(Var_PocitionReal>Var_SetPoint){  
          c=Var_PocitionReal-Var_SetPoint;
-         set_pwm2_duty(bits_RES);            //write salida de señal PWM          
-         output_high(PIN_B2);                //led indicador de giro 
-      }else{
-         output_low(PIN_B2);
-         set_pwm2_duty(0);
-      } //si el sentido de giro no corresponde apaga el led y PWM
+         set_pwm2_duty(c);          //write salida de señal PWM          
+         output_high(PIN_B2);       //led indicador de giro 
+      }else{output_low(PIN_B2);set_pwm2_duty(0);} //si el sentido de giro no corresponde apaga el led y PWM
       if(Var_SetPoint==Var_PocitionReal){
          set_pwm2_duty(0);
          set_pwm1_duty(0);
       }
-      
-     
+      */
+     //reinicio de las memorias 
+     if(k>=20){
+         k=0; 
+         for (int i = 0; i <100; i++){
+               e[i]=0;
+         }
+         
+      }
    }
 }
 

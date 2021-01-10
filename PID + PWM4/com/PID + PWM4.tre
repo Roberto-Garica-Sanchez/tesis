@@ -1,32 +1,3 @@
 ÀÄPID + PWM4
-   ÀÄMAIN  0/392  Ram=2
-      ÃÄ@cinit1  (Inline)  Ram=0
-      ÃÄStar_LCD  0/10  Ram=0
-      ³  ÃÄClear_LCD  0/74  Ram=0
-      ³  ³  ÃÄ@delay_ms1  0/42  Ram=1
-      ³  ³  ÀÄ@delay_ms1  0/42  Ram=1
-      ³  ÃÄEnciende_LCD  0/76  Ram=0
-      ³  ³  ÃÄ@delay_ms1  0/42  Ram=1
-      ³  ³  ÀÄ@delay_ms1  0/42  Ram=1
-      ³  ÀÄActive_LCD  0/76  Ram=0
-      ³     ÃÄ@delay_ms1  0/42  Ram=1
-      ³     ÀÄ@delay_ms1  0/42  Ram=1
-      ÃÄClear_LCD  0/74  Ram=0
-      ³  ÀÄ*
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÃÄ@goto10656  0/150  Ram=0
-      ³  ÀÄwrite_LCD3  0/232  Ram=3
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÀÄ*
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÀÄ*
-      ÃÄ@delay_ms1  0/42  Ram=1
-      ÃÄClear_LCD  0/74  Ram=0
-      ³  ÀÄ*
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÀÄ*
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÀÄ*
-      ÃÄCodigo_Letras  0/704  Ram=8
-      ³  ÀÄ*
-      ÀÄ@delay_ms1  0/42  Ram=1
+   ÀÄMAIN  0/324  Ram=0
+      ÀÄ@cinit1  (Inline)  Ram=0

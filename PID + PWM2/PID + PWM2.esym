@@ -1,7 +1,8 @@
-D G "__PCH__" 0 88 ""5.015""
-D G "__DEVICE__" 0 88 "4550"
-D G "__DATE__" 0 88 ""08-ene.-21""
-D G "__TIME__" 0 88 ""22:52:11"" "Standard Header file for the PIC18F4550 device ////////////////"
+C L "MAIN" 0 12 2 "FUNCTION"
+D G "__PCH__" 0 157 ""5.015""
+D G "__DEVICE__" 0 157 "4550"
+D G "__DATE__" 0 157 ""10-ene.-21""
+D G "__TIME__" 0 157 ""12:54:36"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
@@ -912,45 +913,127 @@ d G "INT_EEPROM" 1 831 "0x00A010"
 d G "INT_OSCF" 1 832 "0x00A080"
 d G "INT_SPP" 1 833 "0x009D80"
 d G "INT_USB" 1 834 "0x00A020"
-D G "PIN_SetPoint" 0 13 "0" "[AN0]setpoint      set_adc_channel(0); set_adc_channel(PIN_SetPoint);"
-D G "PIN_PocitionReal" 0 14 "1" "[AN1]posicion real set_adc_channel(1); set_adc_channel(PIN_PocitionReal);"
-C L "jump_to_irs" 0 11 7 "FUNCTION"
-V G "Var_SetPoint" 0 22 "int16" `646 
-V G "Var_PocitionReal" 0 23 "int16" `647 
-C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "temp" 0 26 "int16" `648 
-V G "a" 0 26 "int16" `649 
-V G "b" 0 26 "int16" `650 
-V G "c" 0 26 "int16" `651  "VAR PWM"
-V G "duty" 0 28 "int16" `652 
-V G "Timer2" 0 29 "int8" `653 
-V G "Poscaler" 0 29 "int8" `654  "VAR motor"
-V G "cambio" 0 31 "int8" `655 
-V G "giro" 0 31 "int8" `656 
-V L "valor" 0 32 "float" `658 
-V L "entradaMin" 0 32 "float" `659 
-V L "entradaMax" 0 32 "float" `660 
-V L "salidaMin" 0 32 "float" `661 
-V L "salidaMax" 0 32 "float" `662 
-F G "map" 0 33 "float(float valor,float entradaMin,float entradaMax,float salidaMin,float salidaMax)" `657 
-F G "MAIN" 0 36 "void()" `672  "Generemos una Se�al cuadrada de 1 Khz"
-C L "MAIN" 0 11 3 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 4 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 2 "FUNCTION"
-C L "MAIN" 0 11 3 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
+D G "__LCD_C__" 2 76 ""
+C L "jump_to_irs" 2 2 2 "FUNCTION"
+C L "jump_to_irs" 2 2 1 "FUNCTION"
+C L "jump_to_irs" 2 2 1 "FUNCTION"
+C L "jump_to_irs" 2 2 1 "FUNCTION"
+C L "jump_to_irs" 2 2 1 "FUNCTION"
+C L "jump_to_irs" 2 2 1 "FUNCTION"
+C L "jump_to_irs" 2 2 2 "FUNCTION"
+T G "LCD_PIN_MAP" 2 90 "{int1 enable,int1 rs,int1 rw,int1 unused,int4 data}" `652  "this is to improve compatability with previous LCD drivers that accepted"
+D G "lcd_output_enable" 2 109 "(x) lcdlat.enable=x"
+D G "lcd_enable_tris" 2 110 "()   lcdtris.enable=0"
+D G "lcd_output_rs" 2 117 "(x) lcdlat.rs=x"
+D G "lcd_rs_tris" 2 118 "()   lcdtris.rs=0"
+D G "lcd_output_rw" 2 125 "(x) lcdlat.rw=x"
+D G "lcd_rw_tris" 2 126 "()   lcdtris.rw=0"
+D G "LCD_DATA_PORT" 2 149 "getenv("SFR:PORTD")" "portd"
+V G "lcd" 2 166 "LCD_PIN_MAP" `653 
+V G "lcdlat" 2 166 "LCD_PIN_MAP" `654 
+V G "lcdtris" 2 166 "LCD_PIN_MAP" `655 
+D G "LCD_TYPE" 2 179 "2" "0=5x7, 1=5x10, 2=2 lines"
+D G "LCD_LINE_TWO" 2 183 "0x40" "LCD RAM address for the second line"
+D G "LCD_LINE_LENGTH" 2 187 "20"
+f G "lcd_read_nibble" 2 190 "int8()" `656 
+F G "lcd_read_byte" 2 193 "int8()" `657 
+V L "low" 2 194 "int8" `658 
+V L "high" 2 194 "int8" `659 
+F G "lcd_read_nibble" 2 240 "int8()" `656 
+V L "n" 2 256 "int8" `661 
+F G "lcd_send_nibble" 2 257 "void(int8 n)" `660 
+V L "address" 2 274 "int8" `663 
+V L "n" 2 274 "int8" `664 
+F G "lcd_send_byte" 2 275 "void(int8 address,int8 n)" `662 
+F G "lcd_init" 2 300 "void()" `665 
+V L "i" 2 301 "int8" `666 
+V L "LCD_INIT_STRING" 2 302 "int8[4]" `667 
+C L "lcd_init" 2 2 2 "FUNCTION"
+V L "x" 2 345 "int8" `669 
+V L "y" 2 345 "int8" `670 
+F G "lcd_gotoxy" 2 346 "void(int8 x,int8 y)" `668 
+V L "address" 2 347 "int8" `671 
+V L "c" 2 363 "int8" `673 
+F G "lcd_putc" 2 364 "void(int8 c)" `672 
+V L "x" 2 406 "int8" `675 
+V L "y" 2 406 "int8" `676 
+F G "lcd_getc" 2 407 "int8(int8 x,int8 y)" `674 
+V L "value" 2 408 "int8" `677 
+C L "lcd_getc" 2 2 1 "FUNCTION"
+C L "lcd_set_cgram_char" 2 2 5 "FUNCTION"
+V L "which" 2 424 "int8" `679 
+V L "ptr" 2 424 "*int8" `680 
+F G "lcd_set_cgram_char" 2 425 "void(int8 which,*int8 ptr)" `678 
+V L "i" 2 426 "int8" `681 
+C L "lcd_set_cgram_char" 2 2 1 "FUNCTION"
+V L "on" 2 443 "int8" `683 
+F G "lcd_cursor_on" 2 444 "void(int8 on)" `682 
+C L "lcd_cursor_on" 2 2 1 "FUNCTION"
+C L "lcd_cursor_on" 2 2 1 "FUNCTION"
+D G "PIN_SetPoint" 0 14 "0" "[AN0]setpoint      set_adc_channel(0); set_adc_channel(PIN_SetPoint);"
+D G "PIN_PocitionReal" 0 15 "1" "[AN1]posicion real set_adc_channel(1); set_adc_channel(PIN_PocitionReal);"
+V G "bits_SetPoint" 0 23 "int16" `684 
+V G "bits_PocitionReal" 0 24 "int16" `685 
+V G "bits_difer" 0 25 "int16" `686 
+V G "bits_RES" 0 26 "int16" `687 
+V G "duty" 0 31 "int16" `688 
+V G "Timer2" 0 32 "int8" `689 
+V G "Poscaler" 0 32 "int8" `690  "VAR motor"
+V G "cambio" 0 34 "int8" `691 
+V G "giro" 0 34 "int8" `692 
+V G "Var_SetPoint" 0 36 "float" `693 
+V G "Var_PocitionReal" 0 37 "float" `694 
+V G "Var_error_0" 0 38 "float" `695 
+V G "Var_error_1" 0 39 "float" `696 
+V G "Var_error_2" 0 40 "float" `697 
+V G "a" 0 41 "float" `698 
+V G "b" 0 41 "float" `699 
+V G "c" 0 41 "float" `700  "variables temporales"
+V G "t" 0 42 "float" `701 
+V G "k" 0 43 "int8" `702 
+V G "Var_res_0" 0 44 "float" `703  "Salidas"
+V G "Var_res_1" 0 45 "float" `704  "Salidas"
+V G "kp" 0 47 "float" `705 
+V G "kd" 0 48 "float" `706 
+V G "ki" 0 49 "float" `707 
+C L "map" 0 12 1 "FUNCTION"
+V L "valor" 0 52 "float" `709 
+V L "entradaMin" 0 52 "float" `710 
+V L "entradaMax" 0 52 "float" `711 
+V L "salidaMin" 0 52 "float" `712 
+V L "salidaMax" 0 52 "float" `713 
+F G "map" 0 53 "float(float valor,float entradaMin,float entradaMax,float salidaMin,float salidaMax)" `708 
+F G "MAIN" 0 56 "void()" `723 
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 3 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 3 "FUNCTION"
+C L "MAIN" 0 12 6 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

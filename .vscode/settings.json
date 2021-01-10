@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "LCD420.C": "cpp",
+        "LCD.C": "cpp",
         "*.txt": "c"
     }
 }

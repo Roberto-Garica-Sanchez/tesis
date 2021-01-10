@@ -7,26 +7,37 @@
 005     pocision_menu
 006     menu_select
 007     menu_back
-008     @delay_ms1.P1
-008     Codigo_numero.numero
-008     Codigo_Letras.letra
-009-00F Codigo_Letras.Codigo
-009-00F Codigo_numero.Codigo
-010-011 write_LCD3.Codigo
-012     write_LCD3.@SCRATCH1
+008-009 bits_sensor
+00A-00D numero
+00E     @delay_ms1.P1
+00E     Codigo_numero.numero
+00E     Codigo_Letras.letra
+00E-00F @ITOF.P1
+00E     MAIN.@SCRATCH1
+00F-015 Codigo_Letras.Codigo
+00F-015 Codigo_numero.Codigo
+00F     MAIN.@SCRATCH2
+010-011 @DIV1616.P1
+010-011 @MUL1616.P2
+012-013 @MUL1616.P1
+012-013 @DIV1616.P2
+014     @MUL1616.@SCRATCH1
+014     @DIV1616.@SCRATCH1
+016-017 write_LCD3.Codigo
+018     write_LCD3.@SCRATCH1
 F83     PSP_DATA
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2
 FBB     CCP_2_LOW
+FBB     CCP_2
 FBC     CCP_2_HIGH
-FBE     CCP_1
 FBE     CCP_1_LOW
+FBE     CCP_1
 FBF     CCP_1_HIGH
-FE1-FE2 @WRITE_PACKED_MEMORY.P1
-FE1-FE2 @READ_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
 FE9-FEA @WRITE_PACKED_MEMORY.P3
 FE9-FEA @READ_PACKED_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
@@ -38,23 +49,24 @@ ROM Allocation:
 00006E  Enciende_LCD
 0000B2  Active_LCD
 0000F6  Star_LCD
-000100  write_LCD3
-0001E2  Codigo_numero
-0002C6  @goto10675
-0002F4  Codigo_Letras
-00056E  @goto10656
-000604  MAIN
-000604  @cinit1
-000618  @cinit2
+000100  @MUL1616
+00011E  @DIV1616
+000162  @ITOF
+00019A  write_LCD3
+00027E  Codigo_numero
+000364  @goto10675
+000392  MAIN
+000392  @cinit1
+0003A6  @cinit2
 
 Project Directory:
     D:\escuela\tesis\LCD\com\
 
 Project Files:
-    LCD.c                                                   [07-ene.-21 14:21  CRC=ACE1309F]
+    LCD.c                                                   [09-ene.-21 18:15  CRC=794D40AC]
     C:\Program Files (x86)\PICC\devices\18f4550.h           [12-nov.-13 14:35  CRC=5337E248]
 
-Source signature=5350F52F
+Source signature=1FBD053C
 
 Units:
     LCD (main)

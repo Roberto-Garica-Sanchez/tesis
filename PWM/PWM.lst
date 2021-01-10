@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 15:52
+CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 16:03
 
                Filename:   D:\escuela\tesis\PWM\PWM.lst
 
@@ -167,7 +167,8 @@ CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 15:52
 00E0:  MOVWF  0D
 ....................             //temp=map(c,0,1023, 0,1023)   ; 
 ....................             //set_pwm2_duty(temp);           //write salida 
-....................             if (a>b) {output_high(PIN_B0);}else{output_low(PIN_B0);} 
+....................             //realiza una comprobacion de el sentido de giro para configurar el pulso pwm, y evitar errores de ejecuion  
+....................             if (a>b) { 
 00E2:  MOVF   0B,W
 00E4:  SUBWF  09,W
 00E6:  BNC   00F6
@@ -175,12 +176,14 @@ CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 15:52
 00EA:  MOVF   08,W
 00EC:  SUBWF  0A,W
 00EE:  BC    00F6
+....................                output_high(PIN_B0); 
 00F0:  BCF    F93.0
 00F2:  BSF    F8A.0
+....................             }else{output_low(PIN_B0);} 
 00F4:  BRA    00FA
 00F6:  BCF    F93.0
 00F8:  BCF    F8A.0
-....................             if (a<b) {output_high(PIN_B1);}else{output_low(PIN_B1);} 
+....................             if (a<b) { 
 00FA:  MOVF   09,W
 00FC:  SUBWF  0B,W
 00FE:  BNC   010E
@@ -188,8 +191,10 @@ CCS PCH C Compiler, Version 5.015, 5967               07-ene.-21 15:52
 0102:  MOVF   0A,W
 0104:  SUBWF  08,W
 0106:  BC    010E
+....................                output_high(PIN_B1); 
 0108:  BCF    F93.1
 010A:  BSF    F8A.1
+....................             }else{output_low(PIN_B1);} 
 010C:  BRA    0112
 010E:  BCF    F93.1
 0110:  BCF    F8A.1

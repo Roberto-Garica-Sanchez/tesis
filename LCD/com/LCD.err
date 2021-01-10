@@ -1,20 +1,18 @@
->>> Warning 229 "LCD.c" Line 138(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 139(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 140(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 141(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 142(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 143(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 144(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 145(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 146(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 147(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 148(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 149(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 150(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 151(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 152(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 153(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 154(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 155(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 156(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 157(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 158(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 159(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 160(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 161(1,1): Subscript out of range
@@ -24,12 +22,12 @@
 >>> Warning 229 "LCD.c" Line 165(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 166(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 167(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 170(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 171(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 168(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 169(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 172(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 173(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 181(1,1): Subscript out of range
->>> Warning 229 "LCD.c" Line 182(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 174(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 175(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 183(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 184(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 185(1,1): Subscript out of range
@@ -38,7 +36,9 @@
 >>> Warning 229 "LCD.c" Line 188(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 189(1,1): Subscript out of range
 >>> Warning 229 "LCD.c" Line 190(1,1): Subscript out of range
->>> Warning 203 "LCD.c" Line 198(1,1): Condition always TRUE
-      Memory usage:   ROM=5%      RAM=0% - 1%
+>>> Warning 229 "LCD.c" Line 191(1,1): Subscript out of range
+>>> Warning 229 "LCD.c" Line 192(1,1): Subscript out of range
+>>> Warning 203 "LCD.c" Line 202(1,1): Condition always TRUE
+      Memory usage:   ROM=4%      RAM=1% - 1%
       0 Errors,  41 Warnings.
 Build Successful.

@@ -9,11 +9,11 @@
 #USE STANDARD_IO(D)
 #USE STANDARD_IO(E)
 
-int16 duty=0;
-int16 temp,a,b,c;
+float32 duty=0;
+float32 temp,a,b,c;
 int Timer2,Poscaler;
 int cambio,giro=1;
-double map(float valor, float entradaMin, float entradaMax, float salidaMin, float salidaMax)    
+float32 map(float32 valor, float32 entradaMin, float32 entradaMax, float32 salidaMin, float32 salidaMax)    
 {                                
     return ((((valor-entradaMin)*(salidaMax-salidaMin))/(entradaMax-entradaMin))+salidaMin); 
 }  
