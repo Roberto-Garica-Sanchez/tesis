@@ -1,0 +1,4 @@
+>>> Warning 202 "LCD con libreria.c" Line 23(7,23): Variable never used:   Var_PocitionReal
+      Memory usage:   ROM=7%      RAM=1% - 2%
+      0 Errors,  1 Warnings.
+Build Successful.

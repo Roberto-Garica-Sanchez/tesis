@@ -1,0 +1,20 @@
+[PROJECT]
+Target=LCD con libreria.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=LCD con libreria.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\;C:\Program Files (x86)\PICC\drivers\C:\Program Files (x86)\PICC\devices\
+[LCD con libreria.c]
+Type=4
+[mru-list]
+1=LCD con libreria.c
+[Opened Files]
+1=LCD con libreria.c
+2=
+3=
+[Units]
+Count=1
+1=LCD con libreria (main)

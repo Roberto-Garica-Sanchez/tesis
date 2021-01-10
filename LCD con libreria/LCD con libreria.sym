@@ -1,0 +1,153 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 bits_SetPoint
+006-007 bits_PocitionReal
+008-00B Var_SetPoint
+00C-00F Var_PocitionReal
+010     lcd_init.i
+010-013 @PRINTF_L32D_672FPFPF.P1
+010-011 @ITOF.P2
+010     @PSTRINGCN_672.P3
+010-011 @PRINTF_LU_672.P4
+010     MAIN.@SCRATCH1
+010     @PSTRINGC_672.@SCRATCH1
+011-014 lcd_init.LCD_INIT_STRING
+011     MAIN.@SCRATCH2
+011     @PSTRINGC_672.@SCRATCH2
+011     @PSTRINGCN_672.@SCRATCH1
+012     MAIN.@SCRATCH3
+012     @PSTRINGCN_672.@SCRATCH2
+012     @PRINTF_LU_672.@SCRATCH1
+013     MAIN.@SCRATCH4
+013     @PRINTF_LU_672.@SCRATCH2
+014-017 @DIVFF.P1
+014     @PRINTF_L32D_672FPFPF.P2
+014     @PRINTF_LU_672.@SCRATCH3
+015     lcd_init.@SCRATCH1
+015     @PRINTF_LU_672.@SCRATCH4
+015     @PRINTF_L32D_672FPFPF.@SCRATCH1
+016     @PRINTF_LU_672.@SCRATCH5
+016     @PRINTF_L32D_672FPFPF.@SCRATCH2
+017     @PRINTF_LU_672.@SCRATCH6
+017     @PRINTF_L32D_672FPFPF.@SCRATCH3
+018-01B @DIVFF.P1
+018     @PRINTF_LU_672.@SCRATCH7
+018     @PRINTF_L32D_672FPFPF.@SCRATCH4
+019     @PRINTF_L32D_672FPFPF.@SCRATCH5
+01A     @PRINTF_L32D_672FPFPF.@SCRATCH6
+01B     @PRINTF_L32D_672FPFPF.@SCRATCH7
+01C     @DIVFF.@SCRATCH1
+01C     @PRINTF_L32D_672FPFPF.@SCRATCH8
+01D-020 @MULFF.P1
+01D-020 @FTOSD.P2
+01D-020 @DIV3232.P3
+01D     lcd_putc.c
+01D     @DIVFF.@SCRATCH2
+01E     @delay_ms1.P1
+01E     lcd_gotoxy.x
+01E     @DIVFF.@SCRATCH3
+01F     lcd_gotoxy.y
+01F     @DIVFF.@SCRATCH4
+020     lcd_gotoxy.address
+020     @DIVFF.@SCRATCH5
+021-024 @MULFF.P1
+021-024 @DIV3232.P2
+021     lcd_gotoxy.@SCRATCH1
+021     @DIVFF.@SCRATCH6
+021     @FTOSD.@SCRATCH1
+022     lcd_send_byte.address
+023     lcd_send_byte.n
+024     lcd_read_byte.low
+024     lcd_send_byte.@SCRATCH1
+025     lcd_send_nibble.n
+025     lcd_read_byte.high
+025     @MULFF.@SCRATCH1
+025     @DIV3232.@SCRATCH1
+026     lcd_read_byte.@SCRATCH1
+026     @MULFF.@SCRATCH2
+026     @DIV3232.@SCRATCH2
+027     @MULFF.@SCRATCH3
+027     @DIV3232.@SCRATCH3
+028     @DIV3232.@SCRATCH4
+029     @DIV3232.@SCRATCH5
+F83     lcd
+F83     PSP_DATA
+F8C     lcdlat
+F95     lcdtris
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const691.call
+000006  @const701.call
+000010  @const706.call
+000016  @delay_ms1
+00003E  lcd_send_nibble
+000056  lcd_read_nibble
+000062  lcd_read_byte
+0000A0  lcd_send_byte
+0000DA  lcd_init
+000152  lcd_gotoxy
+000174  lcd_putc
+0001C4  @PSTRINGC_672
+0001E6  @ITOF
+00021E  @MULFF
+000310  @DIVFF
+00046C  @PSTRINGCN_672
+00048A  @PRINTF_LU_672
+000546  @FTOSD
+000586  @DIV3232
+000614  @PRINTF_L32D_672FPFPF
+00078E  @cinit1
+00078E  MAIN
+0007B6  @cinit2
+
+Project Directory:
+    D:\escuela\tesis\LCD con libreria\
+
+Project Files:
+    LCD con libreria.c                                      [09-ene.-21 21:34  CRC=E0933BB4]
+    C:\Program Files (x86)\PICC\devices\18f4550.H           [12-nov.-13 14:35  CRC=5337E248]
+    C:\Program Files (x86)\PICC\drivers\LCD.C               [19-sep.-13 15:38  CRC=D1A6378A]
+
+Source signature=D7178D10
+
+Units:
+    LCD con libreria (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   LCD con libreria.xsym
+    Errors:      LCD con libreria.err
+    Ext Symbols: LCD con libreria.esym
+    INHX32:      LCD con libreria.hex
+    Symbols:     LCD con libreria.sym
+    List:        LCD con libreria.lst
+    Debug/COFF:  LCD con libreria.cof
+    Project:     LCD con libreria.ccspjt
+    Call Tree:   LCD con libreria.tre
+    Statistics:  LCD con libreria.STA
