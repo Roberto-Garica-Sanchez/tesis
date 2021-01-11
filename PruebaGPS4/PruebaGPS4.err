@@ -1,0 +1,18 @@
+>>> Warning 202 "PruebaGPS4.c" Line 25(39,49): Variable never used:   horapuesta
+>>> Warning 202 "PruebaGPS4.c" Line 25(50,58): Variable never used:   horaorto
+>>> Warning 202 "PruebaGPS4.c" Line 26(7,16): Variable never used:   horaocaso
+>>> Warning 202 "PruebaGPS4.c" Line 26(17,25): Variable never used:   horareal
+>>> Warning 202 "PruebaGPS4.c" Line 26(32,42): Variable never used:   horasalida
+>>> Warning 202 "PruebaGPS4.c" Line 26(43,46): Variable never used:   tst
+>>> Warning 202 "PruebaGPS4.c" Line 26(47,53): Variable never used:   azimut
+>>> Warning 202 "PruebaGPS4.c" Line 26(54,56): Variable never used:   ha
+>>> Warning 202 "PruebaGPS4.c" Line 27(7,12): Variable never used:   zenit
+>>> Warning 202 "PruebaGPS4.c" Line 27(13,16): Variable never used:   haa
+>>> Warning 202 "PruebaGPS4.c" Line 28(12,15): Variable never used:   min
+>>> Warning 202 "PruebaGPS4.c" Line 29(7,11): Variable never used:   hora
+>>> Warning 202 "PruebaGPS4.c" Line 29(20,28): Variable never used:   segundos
+>>> Warning 202 "PruebaGPS4.c" Line 29(29,30): Variable never used:   x
+>>> Warning 202 "PruebaGPS4.c" Line 38(6,11): Variable never used:   dia_c
+      Memory usage:   ROM=59%      RAM=17% - 20%
+      0 Errors,  15 Warnings.
+Build Successful.

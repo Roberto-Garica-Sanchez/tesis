@@ -1,0 +1,45 @@
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=03-01-2021
+D1_L=2
+D1_L1=[37340]Project Opened.
+D1_L2=[41107]Project Closed.
+D2=04-01-2021
+D2_L=7
+D2_L1=[54941]Project Opened.
+D2_L2=[66551]Started Editing.
+D2_L3=[66852]Stopped Editing.
+D2_L4=[67056]Started Editing.
+D2_L5=[67380]Stopped Editing.
+D2_L6=[67795]Started Editing.
+D2_L7=[68096]Stopped Editing.
+
+[Opened Files]
+1=PruebaGPS4.c
+t1=1
+2=..\PID + PWM2\PID + PWM2.c
+t2=1
+Count=2
+3=
+[PROJECT]
+Target=PruebaGPS4.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=PruebaGPS4.c
+[PruebaGPS4.c]
+Type=4
+[mru-list]
+1=PruebaGPS4.c
+
+[defines]
+buildcount=2
+[Directories]
+Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers\
+[Units]
+Count=1
+1=PruebaGPS4 (main)
