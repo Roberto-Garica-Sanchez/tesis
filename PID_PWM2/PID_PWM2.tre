@@ -1,6 +1,7 @@
-ÀÄPID + PWM2
-   ÀÄMAIN  0/2110  Ram=4
+ÀÄPID_PWM2
+   ÀÄMAIN  0/2052  Ram=4
       ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄstar_PWM_2HILOS  0/68  Ram=0
       ÃÄlcd_init  0/120  Ram=6
       ³  ÃÄ@delay_ms1  0/40  Ram=1
       ³  ÃÄlcd_send_nibble  0/24  Ram=1

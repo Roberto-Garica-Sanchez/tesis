@@ -27,12 +27,12 @@
 03F-042 kp
 043-046 kd
 047-04A ki
-04B-04E @SFTOI.P1
 04B     lcd_init.i
-04B-04C @ITOF.P1
-04B-04C @PRINTF_LU_672.P2
-04B-04E @PRINTF_L32D_672FPFPF.P3
-04B-04E @FLT.P4
+04B-04E @SFTOI.P1
+04B-04E @FLT.P2
+04B-04C @ITOF.P3
+04B-04E @PRINTF_L32D_672FPFPF.P4
+04B-04C @PRINTF_LU_672.P5
 04B     MAIN.@SCRATCH1
 04B     @PSTRINGC_672.@SCRATCH1
 04C-04F lcd_init.LCD_INIT_STRING
@@ -43,9 +43,9 @@
 04E     MAIN.@SCRATCH4
 04E     @PRINTF_LU_672.@SCRATCH2
 04F-052 @FLT.P1
-04F-052 @ADDFF.P2
-04F     @PRINTF_L32D_672FPFPF.P3
-04F-052 @DIVFF.P4
+04F     @PRINTF_L32D_672FPFPF.P2
+04F-052 @DIVFF.P3
+04F-052 @ADDFF.P4
 04F     @PRINTF_LU_672.@SCRATCH3
 050     lcd_init.@SCRATCH1
 050     @PRINTF_LU_672.@SCRATCH4
@@ -63,30 +63,30 @@
 054     @PRINTF_L32D_672FPFPF.@SCRATCH5
 055     @PRINTF_L32D_672FPFPF.@SCRATCH6
 056     @PRINTF_L32D_672FPFPF.@SCRATCH7
-057     @ADDFF.@SCRATCH1
 057     @DIVFF.@SCRATCH1
+057     @ADDFF.@SCRATCH1
 057     @PRINTF_L32D_672FPFPF.@SCRATCH8
 058-05B @MULFF.P1
 058-05B @FTOSD.P2
+058-05B @DIV3232.P3
 058     lcd_putc.c
-058-05B @DIV3232.P1
-058     @ADDFF.@SCRATCH2
 058     @DIVFF.@SCRATCH2
+058     @ADDFF.@SCRATCH2
 059     @delay_ms1.P1
 059     lcd_gotoxy.x
-059     @ADDFF.@SCRATCH3
 059     @DIVFF.@SCRATCH3
+059     @ADDFF.@SCRATCH3
 05A     lcd_gotoxy.y
-05A     @ADDFF.@SCRATCH4
 05A     @DIVFF.@SCRATCH4
+05A     @ADDFF.@SCRATCH4
 05B     lcd_gotoxy.address
-05B     @ADDFF.@SCRATCH5
 05B     @DIVFF.@SCRATCH5
+05B     @ADDFF.@SCRATCH5
 05C-05F @DIV3232.P1
 05C-05F @MULFF.P2
 05C     lcd_gotoxy.@SCRATCH1
-05C     @ADDFF.@SCRATCH6
 05C     @DIVFF.@SCRATCH6
+05C     @ADDFF.@SCRATCH6
 05C     @FTOSD.@SCRATCH1
 05D     lcd_send_byte.address
 05D     @ADDFF.@SCRATCH7
@@ -94,8 +94,8 @@
 05E     @ADDFF.@SCRATCH8
 05F     lcd_read_byte.low
 05F     lcd_send_byte.@SCRATCH1
-060     lcd_read_byte.high
 060     lcd_send_nibble.n
+060     lcd_read_byte.high
 060     @MULFF.@SCRATCH1
 060     @DIV3232.@SCRATCH1
 061     lcd_read_byte.@SCRATCH1
@@ -111,63 +111,65 @@ F8C     lcdlat
 F95     lcdtris
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2
 FBB     CCP_2_LOW
+FBB     CCP_2
 FBC     CCP_2_HIGH
 FBE     CCP_1
 FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
-FE1-FE2 @WRITE_PACKED_MEMORY.P1
-FE1-FE2 @READ_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @READ_PROGRAM_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
-FF6-FF8 @READ_PROGRAM_MEMORY.P1
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-000004  @const726.call
-000006  @const738.call
-000008  @const748.call
-00000A  @const750.call
-00000C  @const752.call
-00000E  @const753.call
-000010  @delay_ms1
-000038  lcd_send_nibble
-000050  lcd_read_nibble
-00005C  lcd_read_byte
-00009A  lcd_send_byte
-0000D4  lcd_init
-00014C  lcd_gotoxy
-00016E  lcd_putc
-0001BE  @PSTRINGC_672
-0001DE  @ITOF
-000214  @MULFF
-000306  @DIVFF
-000460  @ADDFF
-0006CA  @FLT
-000740  @SFTOI
-00077A  @PRINTF_LU_672
-000834  @FTOSD
-000874  @DIV3232
-000902  @PRINTF_L32D_672FPFPF
-000A82  @cinit1
-000A82  MAIN
-000B0E  @cinit2
+000004  @const712.call
+000006  @const733.call
+000008  @const743.call
+00000A  @const745.call
+00000C  @const747.call
+00000E  @const748.call
+000010  star_PWM_2HILOS
+000054  @delay_ms1
+00007C  lcd_send_nibble
+000094  lcd_read_nibble
+0000A0  lcd_read_byte
+0000DE  lcd_send_byte
+000118  lcd_init
+000190  lcd_gotoxy
+0001B2  lcd_putc
+000202  @PSTRINGC_672
+000222  @ITOF
+000258  @MULFF
+00034A  @DIVFF
+0004A4  @ADDFF
+00070E  @FLT
+000784  @SFTOI
+0007BE  @PRINTF_LU_672
+000878  @FTOSD
+0008B8  @DIV3232
+000946  @PRINTF_L32D_672FPFPF
+000AC6  @cinit1
+000AC6  MAIN
+000B5A  @cinit2
 
 Project Directory:
-    D:\escuela\tesis\PID + PWM2\
+    D:\escuela\tesis\PID_PWM2\
 
 Project Files:
-    PID + PWM2.c                                            [11-ene.-21 00:55  CRC=6FFD8DEA]
+    PID_PWM2.c                                              [18-ene.-21 15:16  CRC=DCAA4DF3]
     C:\Program Files (x86)\PICC\devices\18F4550.h           [12-nov.-13 14:35  CRC=5337E248]
     C:\Program Files (x86)\PICC\drivers\LCD.C               [19-sep.-13 15:38  CRC=D1A6378A]
+    PID_PWM2.h                                              [18-ene.-21 15:16  CRC=B3E3E3F8]
 
-Source signature=6681DF46
+Source signature=69502FB5
 
 Units:
-    PID + PWM2 (main)
+    PID_PWM2 (main)
 
 Compiler Settings:
     Processor:      PIC18F4550
@@ -178,13 +180,13 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    XREF file:   PID + PWM2.xsym
-    Errors:      PID + PWM2.err
-    Ext Symbols: PID + PWM2.esym
-    INHX32:      PID + PWM2.hex
-    Symbols:     PID + PWM2.sym
-    List:        PID + PWM2.lst
-    Debug/COFF:  PID + PWM2.cof
-    Project:     PID + PWM2.ccspjt
-    Call Tree:   PID + PWM2.tre
-    Statistics:  PID + PWM2.STA
+    XREF file:   PID_PWM2.xsym
+    Errors:      PID_PWM2.err
+    Ext Symbols: PID_PWM2.esym
+    INHX32:      PID_PWM2.hex
+    Symbols:     PID_PWM2.sym
+    List:        PID_PWM2.lst
+    Debug/COFF:  PID_PWM2.cof
+    Project:     PID_PWM2.ccspjt
+    Call Tree:   PID_PWM2.tre
+    Statistics:  PID_PWM2.STA
