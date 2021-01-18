@@ -63,6 +63,47 @@ void main() {
    LCD_INIT();       //Inicializa el LCD
    LCD_PUTC("\f");   //Borrar el contenido del LCD
    while(true){
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
+      /*
+         //leer setpoint 
+         set_adc_channel(PIN_SetPoint);//selecciona valore deseado setpoint  
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.c
+      //leer setpoint 
+         set_adc_channel(PIN_SetPoint);            //selecciona valore deseado setpoint  
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
+         delay_us(100);       
+         bits_SetPoint=read_adc();   
+         //leer posicion real 
+         set_adc_channel(PIN_PocitionReal);  //seleciona la posicion real 
+         delay_us(100);       
+         bits_PocitionReal=read_adc();       //leer
+      */   
+      read_SetPoint();
+      read_PocitionReal();
+      conver_bits_to_vol_SetPoint();
+      conver_bits_to_vol_PocitionReal();
+      calculos_PID();
+      control_sentido_giro();
+      conver_vol_to_bits_res_PID();
+      salidas_PWM();
+      //calculos 
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
+=======
+         //convierte loas bits en voltaje 
+         Var_SetPoint      = (5.0*bits_SetPoint)/1024.0;
+         Var_PocitionReal  = (5.0*bits_PocitionReal)/1024.0;
+         bits_difer=bits_PocitionReal-bits_SetPoint;
+         //diferencia de voltaje 
+         c=Var_PocitionReal-Var_SetPoint;
+         //PID Calculos //muestreo
+            Var_error_2=Var_error_1;
+            Var_error_2=Var_error_0;  
+            Var_error_0=Var_PocitionReal-Var_SetPoint;
+            
+        //calculo
+            
+=======
       /*
          //leer setpoint 
          set_adc_channel(PIN_SetPoint);//selecciona valore deseado setpoint  
@@ -82,6 +123,7 @@ void main() {
       conver_vol_to_bits_res_PID();
       salidas_PWM();
       //calculos 
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
       //convierte los bits en voltaje 
       /*
       Var_SetPoint      = (5.0*bits_SetPoint)/1024.0; 
@@ -96,13 +138,28 @@ void main() {
       Var_error_1=Var_error_0;  
       Var_error_0=Var_PocitionReal-Var_SetPoint;            
       //calculo               
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
+=======
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.c
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
             a=Var_error_0  *( kp + (ki*t) )+( kd/t );
             b=Var_error_1*( (-2*(kd/t) - kp) );
             c=Var_error_2*( (kd/t) +Var_res_1 );
             Var_res_1=Var_res_0;
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
             Var_res_0=a+b+c;               
       */
      /*
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.c
+            Var_res_0=a+b+c;
+            
+=======
+            Var_res_0=a+b+c;               
+      */
+     /*
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.c
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
          //conversion para PWM
          if(Var_res_0<0){//control de giro 
             Var_res_0=Var_res_0*-1;
@@ -114,7 +171,16 @@ void main() {
          bits_RES      = (1024*Var_res_0)/5;
          */
          //incremento en contrador 
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
             //k=k+1;                     
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.c
+            k=k+1;
+                   
+=======
+            //k=k+1;                     
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.c
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
       //interface
       LCD_GOTOXY(1,1);       
       printf(lcd_putc," %4Lu",bits_difer); lcd_putc("b");  
@@ -123,6 +189,7 @@ void main() {
       printf(lcd_putc," %4Lu",bits_RES);  lcd_putc("b");      
       printf(lcd_putc," %f",Var_res_0);   lcd_putc("V");   
       delay_ms(100);
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
       LCD_PUTC("\f");   //Borrar el contenido del LCD           
       // EL SISGUIENTE CODIGO SE ENCARGA DE CONVERTIR
       // el valor de salida del pid en valores validos
@@ -136,10 +203,44 @@ void main() {
       }else{
          output_low(PIN_B1); 
          set_pwm1_duty(0);
+=======
+      LCD_PUTC("\f");   //Borrar el contenido del LCD  
+      
+      //printf(lcd_putc," %i",k);            
+      //printf(lcd_putc," %f",c);            
+      // EL SISGUIENTE CODIGO SE ENCARGA DE CONVERTIR el valor de salida del pid en 
+      //valores validos para el puente h de dos hilos 
+      //el sentido de giro se definira por el signo ->0<+
+      
+      /*
+      if(Var_PocitionReal<Var_SetPoint){//valores positivos 
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.c
+         c=Var_SetPoint-Var_PocitionReal;
+         set_pwm1_duty(bits_RES);            //write salida de señal PWM 
+         output_high(PIN_B1);                //led indicador de giro 
+      }else{
+         output_low(PIN_B1); 
+         set_pwm1_duty(0);
+         }
+      if(Var_PocitionReal>Var_SetPoint){     //valores negativos 
+         c=Var_PocitionReal-Var_SetPoint;
+         set_pwm2_duty(bits_RES);            //write salida de señal PWM          
+         output_high(PIN_B2);                //led indicador de giro 
+=======
+         set_pwm1_duty(bits_RES);   //write salida de señal PWM 
+         output_high(PIN_B1); //led indicador de giro 
+      }else{
+         output_low(PIN_B1); 
+         set_pwm1_duty(0);
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
       }
       if(Var_PocitionReal>Var_SetPoint){  //valores negativos          
          set_pwm2_duty(bits_RES);         //write salida de señal PWM          
          output_high(PIN_B2);             //led indicador de giro 
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
+=======
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.c
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
       }else{
          output_low(PIN_B2);
          set_pwm2_duty(0);
@@ -147,8 +248,19 @@ void main() {
       if(Var_SetPoint==Var_PocitionReal){
          set_pwm2_duty(0);
          set_pwm1_duty(0);
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.c
       }       
       */
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.c
+      }
+      
+     
+=======
+      }       
+      */
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.c
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.c
    }
 }
 

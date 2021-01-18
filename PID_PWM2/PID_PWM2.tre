@@ -1,5 +1,15 @@
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.tre
 青PID_PWM2
    青MAIN  0/400  Ram=0
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.tre
+青PID + PWM2
+   青MAIN  0/2110  Ram=4
+=======
+青PID_PWM2
+   青MAIN  0/400  Ram=0
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.tre
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.tre
       団@cinit1  (Inline)  Ram=0
       団star_PWM_2HILOS  0/68  Ram=0
       団lcd_init  0/120  Ram=6

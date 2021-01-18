@@ -27,16 +27,37 @@
 03F-042 kp
 043-046 kd
 047-04A ki
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+04B-04E @SFTOI.P1
+04B     lcd_init.i
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 04B-04C @ITOF.P1
 04B     lcd_init.i
 04B-04C @PRINTF_LU_672.P1
 04B-04E @FLT.P2
 04B-04E @PRINTF_L32D_672FPFPF.P3
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+04B-04E @FLT.P4
+04B     MAIN.@SCRATCH1
+=======
+04B-04C @ITOF.P1
+04B     lcd_init.i
+04B-04C @PRINTF_LU_672.P1
+04B-04E @FLT.P2
+04B-04E @PRINTF_L32D_672FPFPF.P3
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 04B-04E @SFTOI.P4
 04B     conver_bits_to_vol_SetPoint.@SCRATCH1
 04B     conver_bits_to_vol_PocitionReal.@SCRATCH1
 04B     calculos_PID.@SCRATCH1
 04B     conver_vol_to_bits_res_PID.@SCRATCH1
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 04B     @PSTRINGC_672.@SCRATCH1
 04C-04F lcd_init.LCD_INIT_STRING
 04C     conver_bits_to_vol_SetPoint.@SCRATCH2
@@ -56,8 +77,18 @@
 04E     @PRINTF_LU_672.@SCRATCH2
 04F-052 @FLT.P1
 04F-052 @ADDFF.P2
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
 04F-052 @DIVFF.P3
 04F     @PRINTF_L32D_672FPFPF.P4
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+04F     @PRINTF_L32D_672FPFPF.P3
+04F-052 @DIVFF.P4
+=======
+04F-052 @DIVFF.P3
+04F     @PRINTF_L32D_672FPFPF.P4
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 04F     @PRINTF_LU_672.@SCRATCH3
 050     lcd_init.@SCRATCH1
 050     @PRINTF_LU_672.@SCRATCH4
@@ -78,6 +109,23 @@
 057     @DIVFF.@SCRATCH1
 057     @ADDFF.@SCRATCH1
 057     @PRINTF_L32D_672FPFPF.@SCRATCH8
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+058-05B @FTOSD.P1
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+058-05B @MULFF.P1
+058-05B @FTOSD.P2
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
+058     lcd_putc.c
+058-05B @DIV3232.P1
+058-05B @MULFF.P2
+058     @DIVFF.@SCRATCH2
+058     @ADDFF.@SCRATCH2
+059     lcd_gotoxy.x
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+059     @delay_ms1.P1
+=======
+=======
 058-05B @FTOSD.P1
 058     lcd_putc.c
 058-05B @DIV3232.P1
@@ -86,6 +134,10 @@
 058     @ADDFF.@SCRATCH2
 059     lcd_gotoxy.x
 059     @delay_ms1.P1
+059     @DIVFF.@SCRATCH3
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+059     @ADDFF.@SCRATCH3
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 059     @DIVFF.@SCRATCH3
 059     @ADDFF.@SCRATCH3
 05A     lcd_gotoxy.y
@@ -131,14 +183,60 @@ FBE     CCP_1
 FBF     CCP_1_HIGH
 FE1-FE2 @WRITE_PACKED_MEMORY.P1
 FE1-FE2 @READ_PACKED_MEMORY.P2
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+=======
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 FE9-FEA @WRITE_PACKED_MEMORY.P1
 FE9-FEA @READ_PACKED_MEMORY.P2
 FE9-FEA @WRITE_PROGRAM_MEMORY.P3
 FE9-FEA @READ_PROGRAM_MEMORY.P4
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+000004  @const726.call
+000006  @const738.call
+000008  @const748.call
+00000A  @const750.call
+00000C  @const752.call
+00000E  @const753.call
+000010  @delay_ms1
+000038  lcd_send_nibble
+000050  lcd_read_nibble
+00005C  lcd_read_byte
+00009A  lcd_send_byte
+0000D4  lcd_init
+00014C  lcd_gotoxy
+00016E  lcd_putc
+0001BE  @PSTRINGC_672
+0001DE  @ITOF
+000214  @MULFF
+000306  @DIVFF
+000460  @ADDFF
+0006CA  @FLT
+000740  @SFTOI
+00077A  @PRINTF_LU_672
+000834  @FTOSD
+000874  @DIV3232
+000902  @PRINTF_L32D_672FPFPF
+000A82  @cinit1
+000A82  MAIN
+000B0E  @cinit2
+=======
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 000004  @const736.call
 000006  @const741.call
 000008  @const751.call
@@ -176,17 +274,38 @@ ROM Allocation:
 0010C2  MAIN
 0010C2  @cinit1
 001156  @cinit2
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+=======
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 
 Project Directory:
     D:\escuela\tesis\PID_PWM2\
 
 Project Files:
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+    PID_PWM2.c                                              [18-ene.-21 16:00  CRC=45376468]
+=======
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.sym
+    PID + PWM2.c                                            [10-ene.-21 12:54  CRC=6FFD8DEA]
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
+    C:\Program Files (x86)\PICC\devices\18F4550.h           [12-nov.-13 14:35  CRC=5337E248]
+    C:\Program Files (x86)\PICC\drivers\LCD.C               [19-sep.-13 15:38  CRC=D1A6378A]
+    PID_PWM2.h                                              [18-ene.-21 16:00  CRC=6EAC4BE8]
+
+<<<<<<< Updated upstream:PID_PWM2/PID_PWM2.sym
+Source signature=476E160A
+=======
+Source signature=6681DF46
+=======
     PID_PWM2.c                                              [18-ene.-21 16:00  CRC=45376468]
     C:\Program Files (x86)\PICC\devices\18F4550.h           [12-nov.-13 14:35  CRC=5337E248]
     C:\Program Files (x86)\PICC\drivers\LCD.C               [19-sep.-13 15:38  CRC=D1A6378A]
     PID_PWM2.h                                              [18-ene.-21 16:00  CRC=6EAC4BE8]
 
 Source signature=476E160A
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.sym
+>>>>>>> Stashed changes:PID + PWM2/PID + PWM2.sym
 
 Units:
     PID_PWM2 (main)

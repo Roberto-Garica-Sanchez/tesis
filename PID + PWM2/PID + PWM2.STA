@@ -1,0 +1,135 @@
+
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.STA
+ROM used:   4800/32768 (15%)
+            4800/32768 (15%) including unused fragments
+
+            3.3 Average locations per line
+            30.6 Average locations per statement
+=======
+ROM used:   4690/32768 (14%)
+            4690/32768 (14%) including unused fragments
+
+            3.0 Average locations per line
+            29.7 Average locations per statement
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.STA
+
+RAM used:   75/2048 (4%) at main() level
+            101/2048 (5%) worst case
+
+Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.STA
+  156    73  46  PID + PWM2.c
+  837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
+  456    84  54  C:\Program Files (x86)\PICC\drivers\LCD.C
+----- -----
+ 1449   157 Total
+=======
+  155    25  16  PID_PWM2.c
+  837     0   0  C:\Program Files (x86)\PICC\devices\18F4550.h
+  456    84  53  C:\Program Files (x86)\PICC\drivers\LCD.C
+  111    49  31  PID_PWM2.h
+----- -----
+ 1559   158 Total
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.STA
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   0    1             @delay_ms1
+0     62   1    3   596  5.9  lcd_read_byte
+0     12   0    0    59  4.2  lcd_read_nibble
+0     24   0    1   179  3.3  lcd_send_nibble
+0     58   1    3   460  4.7  lcd_send_byte
+0    120   1    6   814  7.2  lcd_init
+0     34   0    4   208  6.3  lcd_gotoxy
+0     80   1    1   354  4.7  lcd_putc
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.STA
+0    618   6   16   167  5.5  @ADDFF
+0    242   3   11             @MULFF
+0    346   4   14             @DIVFF
+0   2110  22    4  2721  7.8  MAIN
+0      2   0    0  1736  7.7  @const726
+0     32   0    2             @PSTRINGC_672
+0     54   1    2             @ITOF
+=======
+0     68   1    0   115  1.7  star_PWM_2HILOS
+0     54   1    0    59  1.9  read_SetPoint
+0     54   1    0    59  1.9  read_PocitionReal
+0    120   1    4    44  2.3  conver_bits_to_vol_SetPoint
+0     54   1    2             @ITOF
+0    242   3   11             @MULFF
+0    346   4   14             @DIVFF
+0    120   1    4    44  2.3  conver_bits_to_vol_PocitionReal
+0    714   8    4   391  3.8  calculos_PID
+0    618   7   16             @ADDFF
+0    142   2    0   165  4.1  control_sentido_giro
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.STA
+0    118   1   10             @FLT
+0    108   1    4    39  2.0  conver_vol_to_bits_res_PID
+0     58   1    4             @SFTOI
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.STA
+0    186   2    9             @PRINTF_LU_672
+0      2   0    0             @const738
+0     64   1    5             @FTOSD
+0    142   1   13             @DIV3232
+0    384   4   13             @PRINTF_L32D_672FPFPF
+0      2   0    0             @const748
+0      2   0    0             @const750
+0      2   0    0             @const752
+0      2   0    0             @const753
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               10
+    Statements              157
+    Comments                316
+    Volume (V)              10509
+    Difficulty (D)          52.7
+    Effort to implement (E) 553814
+    Time to implement (T)   8 hours, 33 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   15
+    Maintainability (MI)    123
+=======
+0    216   2    0   331  3.7  salidas_PWM
+0    400   4    0   624  2.3  MAIN
+0      2   0    0             @const736
+0     32   0    2             @PSTRINGC_672
+0    188   2    9             @PRINTF_LU_672
+0      2   0    0             @const741
+0     64   1    5             @FTOSD
+0    142   2   13             @DIV3232
+0    386   4   13             @PRINTF_L32D_672FPFPF
+0      2   0    0             @const751
+0      2   0    0             @const753
+0      2   0    0             @const755
+0      2   0    0             @const756
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               17
+    Statements              158
+    Comments                412
+    Volume (V)              7785
+    Difficulty (D)          61.8
+    Effort to implement (E) 481135
+    Time to implement (T)   7 hours, 25 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   13
+    Maintainability (MI)    152
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.STA
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+<<<<<<< HEAD:PID + PWM2/PID + PWM2.STA
+00004-07FFE  4796  27968  
+=======
+00004-07FFE  4686  28078  
+>>>>>>> d4c717e... conversion 90 %:PID_PWM2/PID_PWM2.STA
+
+
+
