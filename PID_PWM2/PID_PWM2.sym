@@ -27,25 +27,37 @@
 03F-042 kp
 043-046 kd
 047-04A ki
+04B-04C @ITOF.P1
 04B     lcd_init.i
-04B-04E @SFTOI.P1
+04B-04C @PRINTF_LU_672.P1
 04B-04E @FLT.P2
-04B-04C @ITOF.P3
-04B-04E @PRINTF_L32D_672FPFPF.P4
-04B-04C @PRINTF_LU_672.P5
-04B     MAIN.@SCRATCH1
+04B-04E @PRINTF_L32D_672FPFPF.P3
+04B-04E @SFTOI.P4
+04B     conver_bits_to_vol_SetPoint.@SCRATCH1
+04B     conver_bits_to_vol_PocitionReal.@SCRATCH1
+04B     calculos_PID.@SCRATCH1
+04B     conver_vol_to_bits_res_PID.@SCRATCH1
 04B     @PSTRINGC_672.@SCRATCH1
 04C-04F lcd_init.LCD_INIT_STRING
-04C     MAIN.@SCRATCH2
+04C     conver_bits_to_vol_SetPoint.@SCRATCH2
+04C     conver_bits_to_vol_PocitionReal.@SCRATCH2
+04C     calculos_PID.@SCRATCH2
+04C     conver_vol_to_bits_res_PID.@SCRATCH2
 04C     @PSTRINGC_672.@SCRATCH2
-04D     MAIN.@SCRATCH3
+04D     conver_bits_to_vol_SetPoint.@SCRATCH3
+04D     conver_bits_to_vol_PocitionReal.@SCRATCH3
+04D     calculos_PID.@SCRATCH3
+04D     conver_vol_to_bits_res_PID.@SCRATCH3
 04D     @PRINTF_LU_672.@SCRATCH1
-04E     MAIN.@SCRATCH4
+04E     conver_bits_to_vol_SetPoint.@SCRATCH4
+04E     conver_bits_to_vol_PocitionReal.@SCRATCH4
+04E     calculos_PID.@SCRATCH4
+04E     conver_vol_to_bits_res_PID.@SCRATCH4
 04E     @PRINTF_LU_672.@SCRATCH2
 04F-052 @FLT.P1
-04F     @PRINTF_L32D_672FPFPF.P2
+04F-052 @ADDFF.P2
 04F-052 @DIVFF.P3
-04F-052 @ADDFF.P4
+04F     @PRINTF_L32D_672FPFPF.P4
 04F     @PRINTF_LU_672.@SCRATCH3
 050     lcd_init.@SCRATCH1
 050     @PRINTF_LU_672.@SCRATCH4
@@ -54,8 +66,8 @@
 051     @PRINTF_L32D_672FPFPF.@SCRATCH2
 052     @PRINTF_LU_672.@SCRATCH6
 052     @PRINTF_L32D_672FPFPF.@SCRATCH3
-053-056 @ADDFF.P1
-053-056 @DIVFF.P2
+053-056 @DIVFF.P1
+053-056 @ADDFF.P2
 053     @FLT.@SCRATCH1
 053     @PRINTF_LU_672.@SCRATCH7
 053     @PRINTF_L32D_672FPFPF.@SCRATCH4
@@ -66,14 +78,14 @@
 057     @DIVFF.@SCRATCH1
 057     @ADDFF.@SCRATCH1
 057     @PRINTF_L32D_672FPFPF.@SCRATCH8
-058-05B @MULFF.P1
-058-05B @FTOSD.P2
-058-05B @DIV3232.P3
+058-05B @FTOSD.P1
 058     lcd_putc.c
+058-05B @DIV3232.P1
+058-05B @MULFF.P2
 058     @DIVFF.@SCRATCH2
 058     @ADDFF.@SCRATCH2
-059     @delay_ms1.P1
 059     lcd_gotoxy.x
+059     @delay_ms1.P1
 059     @DIVFF.@SCRATCH3
 059     @ADDFF.@SCRATCH3
 05A     lcd_gotoxy.y
@@ -94,8 +106,8 @@
 05E     @ADDFF.@SCRATCH8
 05F     lcd_read_byte.low
 05F     lcd_send_byte.@SCRATCH1
-060     lcd_send_nibble.n
 060     lcd_read_byte.high
+060     lcd_send_nibble.n
 060     @MULFF.@SCRATCH1
 060     @DIV3232.@SCRATCH1
 061     lcd_read_byte.@SCRATCH1
@@ -111,28 +123,28 @@ F8C     lcdlat
 F95     lcdtris
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2_LOW
 FBB     CCP_2
+FBB     CCP_2_LOW
 FBC     CCP_2_HIGH
-FBE     CCP_1
 FBE     CCP_1_LOW
+FBE     CCP_1
 FBF     CCP_1_HIGH
-FE1-FE2 @READ_PACKED_MEMORY.P1
-FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
 FE9-FEA @WRITE_PACKED_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P3
-FE9-FEA @READ_PACKED_MEMORY.P4
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
-FF6-FF8 @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-000004  @const712.call
-000006  @const733.call
-000008  @const743.call
-00000A  @const745.call
-00000C  @const747.call
-00000E  @const748.call
+000004  @const736.call
+000006  @const741.call
+000008  @const751.call
+00000A  @const753.call
+00000C  @const755.call
+00000E  @const756.call
 000010  star_PWM_2HILOS
 000054  @delay_ms1
 00007C  lcd_send_nibble
@@ -143,30 +155,38 @@ ROM Allocation:
 000190  lcd_gotoxy
 0001B2  lcd_putc
 000202  @PSTRINGC_672
-000222  @ITOF
-000258  @MULFF
-00034A  @DIVFF
-0004A4  @ADDFF
-00070E  @FLT
-000784  @SFTOI
-0007BE  @PRINTF_LU_672
-000878  @FTOSD
-0008B8  @DIV3232
-000946  @PRINTF_L32D_672FPFPF
-000AC6  @cinit1
-000AC6  MAIN
-000B5A  @cinit2
+000222  read_SetPoint
+000258  read_PocitionReal
+00028E  @ITOF
+0002C4  @MULFF
+0003B6  @DIVFF
+000510  conver_bits_to_vol_SetPoint
+000588  conver_bits_to_vol_PocitionReal
+000600  @ADDFF
+00086A  calculos_PID
+000B34  @FLT
+000BAA  control_sentido_giro
+000C38  @SFTOI
+000C72  conver_vol_to_bits_res_PID
+000CDE  salidas_PWM
+000DB6  @PRINTF_LU_672
+000E72  @FTOSD
+000EB2  @DIV3232
+000F40  @PRINTF_L32D_672FPFPF
+0010C2  MAIN
+0010C2  @cinit1
+001156  @cinit2
 
 Project Directory:
     D:\escuela\tesis\PID_PWM2\
 
 Project Files:
-    PID_PWM2.c                                              [18-ene.-21 15:16  CRC=DCAA4DF3]
+    PID_PWM2.c                                              [18-ene.-21 16:00  CRC=45376468]
     C:\Program Files (x86)\PICC\devices\18F4550.h           [12-nov.-13 14:35  CRC=5337E248]
     C:\Program Files (x86)\PICC\drivers\LCD.C               [19-sep.-13 15:38  CRC=D1A6378A]
-    PID_PWM2.h                                              [18-ene.-21 15:16  CRC=B3E3E3F8]
+    PID_PWM2.h                                              [18-ene.-21 16:00  CRC=6EAC4BE8]
 
-Source signature=69502FB5
+Source signature=476E160A
 
 Units:
     PID_PWM2 (main)

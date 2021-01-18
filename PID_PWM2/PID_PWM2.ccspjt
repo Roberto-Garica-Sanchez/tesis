@@ -11,6 +11,10 @@ Include=C:\Program Files (x86)\PICC\devices\;C:\Program Files (x86)\PICC\drivers
 Type=4
 [mru-list]
 1=PID_PWM2.c
+[Opened Files]
+1=PID_PWM2.c
+2=PID_PWM2.h
+3=
 [Units]
 Count=1
 1=PID_PWM2 (main)

@@ -1,5 +1,0 @@
->>> Warning 202 "D:\escuela\tesis\PID_PWM2\PID_PWM2.h" Line 20(7,11): Variable never used:   duty
->>> Warning 202 "D:\escuela\tesis\PID_PWM2\PID_PWM2.h" Line 24(5,11): Variable never used:   cambio
-      Memory usage:   ROM=15%      RAM=4% - 5%
-      0 Errors,  2 Warnings.
-Build Successful.
